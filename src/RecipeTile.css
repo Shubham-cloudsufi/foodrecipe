@@ -1,0 +1,19 @@
+.recipe{
+    margin-top: 20px;
+    display: grid;
+    text-align: center;
+    align-items: center;
+}
+.recipe_img{
+    width:200px;
+    height:200px;
+}
+
+.recipe_label{
+    max-width:200px;
+}
+
+.recipe_url{
+ max-width:200px;
+ text-decoration: none;
+}
