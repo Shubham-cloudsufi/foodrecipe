@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-
-
+// import Position from './Position';
+// import App from './App';
+import Path from './Path'
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Path />
   </React.StrictMode>,
   document.getElementById('root')
 );
