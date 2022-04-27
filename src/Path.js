@@ -8,6 +8,7 @@ const Path = () => {
     {/* <Navbar /> */}
         <Routes>
             <Route exact path='/' element= {<App />} />
+            <Route exact path='/app' element= {<App />} />
             <Route exact path = "*" element ={<ErrorPage />} />
         </Routes>
     </Router>
