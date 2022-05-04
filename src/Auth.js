@@ -1,19 +1,54 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import login from "./Icons/login.svg";
 
 const NavWrapperTile = styled("div")`
   .header {
+    display:flex;
     text-align: center;
     background-color: #e5dbdb;
-    height: 400px;
+    height: 450px;
     margin: 60px 273px;
+    font-weight: 400;
   }
   .user {
     padding: 15px;
   }
   h1 {
     font-weight: 100;
+  }
+  p{
+    padding: 10px 0px 0 0 ;
+  }
+  input{
+    margin: 10px 0px;
+    padding:10px 10px;
+    width:300px;
+    border-radius:5px;
+    border:1px solid #bfa0a0;
+  }
+  .login{
+    padding:10px 50px;
+    margin: 20px 0px;
+    background-color: #bfa0a0;
+    color:white;
+    border:1px solid #bfa0a0;
+    cursor:pointer;
+  }
+
+  .login:hover{
+    background-color: white;
+    color: #bfa0a0;
+  }
+
+  .login_img{
+    width: 279px;
+    height: 299px;
+    margin: 84px 0px 0px 40px;
+    ${'' /* background-color: yellowgreen; */}
+  }
+  .input_data{
+    margin: 90px 0px 0px 40px;
   }
 `;
 const Auth = ({ auth }) => {
@@ -25,32 +60,35 @@ const Auth = ({ auth }) => {
   const handle = () => {
     localStorage.setItem("Name", JSON.stringify({name,age,gender,profile}));
     auth();
+    localStorage.setItem("login", true)
   };
   
   return (
     <NavWrapperTile>
       <div className="header">
-        <p>Name:</p>
+      <img alt="login" className="login_img" src={login} />
+        {/* <p>NAME:</p> */}
+        <div className="input_data"> 
         <input
           type="text"
           placeholder="Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-        <p>age:</p>
+        {/* <p>AGE:</p> */}
         <input
           type="number"
           placeholder="age"
           value={age}
           onChange={(e) => setAge(e.target.value)}
         />
-        <p>gender:</p>
+        {/* <p>GENDER:</p> */}
         <input
           placeholder="gender"
           value={gender}
           onChange={(e) => setGender(e.target.value)}
         />
-        <p>profile:</p>
+        {/* <p>PROFILE:</p> */}
         <input
           type="url"
           placeholder="profile"
@@ -58,7 +96,8 @@ const Auth = ({ auth }) => {
           onChange={(e) => setProfile(e.target.value)}
         />
         <div>
-          <button onClick={handle}>Login</button>
+          <button className="login"  onClick={handle}>Login</button>
+        </div>
         </div>
       </div>
     </NavWrapperTile>

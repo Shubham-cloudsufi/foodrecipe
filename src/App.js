@@ -5,7 +5,6 @@ import axios from "axios";
 import SkeletonArticle from "./SkeletonArticle";
 import food from "./Icons/food.svg";
 import { Link, useNavigate } from "react-router-dom";
-import Data from "./Data";
 const AppWrapperTile = styled("div")`
   html {
     font-size: 16px;
@@ -273,7 +272,9 @@ function App({ logoutx }) {
   const navigate = useNavigate();
   function logout() {
     logoutx();
+    // localStorage.removeItem("Name")
     navigate("auth");
+    localStorage.clear()
   }
 
   function change(e) {
@@ -283,7 +284,7 @@ function App({ logoutx }) {
       setHeaderText("0<1000");
       return;
     } else if (e.target.value == 3) {
-      setHeaderText("1000<2000 ");
+      setHeaderText("1000<2000");
       return;
     } else if (e.target.value == 4) {
       setHeaderText("2000<end");
@@ -369,7 +370,7 @@ function App({ logoutx }) {
             </select>
           </div>
           <button className="profile_icon">
-            <Link className="profile" to="/Data">
+            <Link className="profile" to="/Profile">
               <img src="https://avatars.githubusercontent.com/u/78645691?s=96&v=4" />
             </Link>
           </button>
