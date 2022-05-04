@@ -34,16 +34,6 @@ const Path = () => {
        <Navbar /> 
       }
         <Routes>
-        <Route
-            path="/"
-            element={
-              isAuthenticate ? (
-                <Navigate to="/app" />
-              ) : (
-                <Auth auth={() => setAuthenticate(true)} />
-              )
-            }
-          />
           <Route
             path="/auth"
             element={
