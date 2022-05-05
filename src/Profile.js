@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 const ProfileWrapperTile = styled("div")`
 .data{
-    ${'' /* text-align:center; */}
     background-color:#d9c7c7;
     margin: 42px 189px;
     height:300px;

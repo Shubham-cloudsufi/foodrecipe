@@ -4,6 +4,13 @@ import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 
 const NavWrapperTile = styled("div")`
+  .navbar {
+    overflow: hidden;
+    height: 50px;
+    box-shadow: rgb(255 255 255) 0px 0px 0px 2px,
+      rgb(0 24 44 / 65%) 0px 4px 6px -1px, rgb(0 255 255 / 8%) 0px 1px 0px inset;
+  }
+  
   .head {
     width: 19rem;
     text-align: center;
@@ -17,29 +24,31 @@ const NavWrapperTile = styled("div")`
   }
 
   .food_icon img {
-    position: absolute;
     width: 4.3rem;
     height: 3.25rem;
-    align-items: center;
-    text-align: right;
-    margin-top: 1.3rem;
-    margin: -0.5rem 0 1.8rem 69rem;
+    float: right;
+    position: relative;
+    bottom: 0.5rem;
+    right: 1.2rem;
   }
 
-  .navbar {
-    height: 50px;
-    box-shadow: rgb(255 255 255) 0px 0px 0px 2px,
-      rgb(0 24 44 / 65%) 0px 4px 6px -1px, rgb(0 255 255 / 8%) 0px 1px 0px inset;
-  }
   .nav_button{
-    position: absolute;
+    /* position: absolute; */
     align-items: center;
     padding:8px 10px; 
     text-align: right;
     margin-top: -1.3rem;
     font-weight:400;
-    margin: 0.5rem 0 0rem 64rem;
+    float: right;
+    margin: 0.5rem 1.2rem 0rem 4rem;
   }
+  @media screen and (max-width: 500px) {
+  .nav_button {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
 `;
 
 const Navbar = () => {

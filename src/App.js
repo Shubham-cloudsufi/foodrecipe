@@ -19,14 +19,11 @@ const AppWrapperTile = styled("div")`
     margin-bottom: 6.2rem;
   }
   .header {
-    width: 19rem;
-    text-align: center;
-    margin: 0.25rem 0 0 -3.7rem;
+    margin: 0.25rem 0 0 1.3rem;
     color: black;
     font-weight: 100;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-      rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-  }
+    box-shadow: rgb(50 50 93 / 25%) 0px 50px 100px -20px, rgb(0 0 0 / 30%) 0px 30px 60px -30px;
+}
   .recipe_app {
     display: grid;
     grid-template-columns: 15rem 15rem 15rem;
@@ -47,10 +44,10 @@ const AppWrapperTile = styled("div")`
     outline: none;
   }
   #search {
-    position: relative;
-    border: 1px solid rgb(140, 141, 158);
-    left: 28rem;
-    top: -2.3rem;
+    position: absolute;
+    border: 1px solid rgb(140,141,158);
+    left: 30%;
+    top: 0.62rem;
     width: 29%;
     height: 2.3rem;
     border-radius: 0.5rem;
@@ -93,7 +90,7 @@ const AppWrapperTile = styled("div")`
     width: 5.2rem;
     height: 2.45rem;
     top: 0.6rem;
-    right: 30rem;
+    right: 36%;
     border-radius: 0px 0.4rem 0.4rem 0px;
     cursor: pointer;
   }
@@ -113,40 +110,25 @@ const AppWrapperTile = styled("div")`
     text-shadow: 0 0 80px rgb(192 219 255 / 75%), 0 0 32px rgb(65 120 255 / 24%);
   }
 
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1000px) {
     .recipe_app {
       display: flex;
       display: grid;
       grid-template-columns: 240px 240px;
     }
-    .app_form {
-      display: flex;
-      width: 50%;
-      position: relative;
-      left: 14rem;
-      top: 0px;
-      height: 3.1rem;
-      margin-top: 1.8rem;
-      bottom: 0px;
-    }
-    #search {
-      left: 25rem;
-      width: 27rem;
-    }
-    .app_submit {
-      background-color: rgb(126, 126, 219);
-      color: white;
-      position: fixed;
-      margin-right: -7.25rem;
-    }
+    .buttons {
+    position: fixed;
+    background-color: white;
+    height: 4.3rem;
+    /* margin-top: -1.5rem; */
+    margin-top: 1rem;
+    width: 100%;
+  }
   }
   @media screen and (max-width: 700px) {
     .recipe_app {
       display: grid;
       grid-template-columns: 15rem;
-    }
-    .app_submit {
-      right: 7.2rem;
     }
   }
 
@@ -154,13 +136,6 @@ const AppWrapperTile = styled("div")`
     .recipe_app {
       display: grid;
       grid-template-columns: 240px;
-    }
-    #search {
-      left: 80px;
-      width: 150px;
-    }
-    .app_submit {
-      right: 155px;
     }
   }
 
@@ -204,38 +179,54 @@ const AppWrapperTile = styled("div")`
     position: fixed;
     background-color: white;
     height: 4.3rem;
-    margin-top: -1.5rem;
+    /* margin-top: -1.5rem; */
+    margin-top: 1.5rem;
     width: 100%;
   }
   .food_icon img {
-    position: absolute;
+    /* position: absolute; */
     width: 4.3rem;
     height: 3.25rem;
-    align-items: center;
-    text-align: right;
-    margin-top: 1.3rem;
-    margin: -3.1rem 0 1.8rem 44rem;
+    /* align-items: center; */
+    /* text-align: right; */
+    /* margin-top: 1.3rem; */
+    /* margin: -3.1rem 0 1.8rem 44rem; */
   }
   .profile_icon img {
-    position: absolute;
-    width: 3rem;
-    height: 3rem;
-    align-items: center;
-    text-align: right;
-    margin-top: 1.3rem;
-    margin: -4.1rem 0 1.8rem 40rem;
+    /* position: absolute; */
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: white;
+    /* align-items: center; */
+    /* text-align: right; */
+    /* margin-top: 1.3rem; */
+    margin: 0.7rem 0 0rem 0rem;
     border-radius: 50%;
     border: 1px solid grey;
   }
 
   .logout {
     font-weight: 100;
-    margin: -2rem 0 1.8rem 49rem;
-    position: absolute;
+    margin: 0.7rem 0 0rem 0rem;
+    /* position: absolute; */
   }
 
   .logout h1 {
     font-weight: 100;
+  }
+  .app_icon{
+    float: right;
+    display: flex;
+    /* background: red; */
+    align-items: center;
+    margin: -3.3rem 1.5rem 2rem 0;
+    text-align: center;
+    border: 1px solid white;
+  }
+  .icon{
+    padding: 0px 2px;
+    border: 1px solid white;
+    background-color: white;
   }
 `;
 
@@ -369,17 +360,19 @@ function App({ logoutx }) {
               </option>
             </select>
           </div>
-          <button className="profile_icon">
-            <Link className="profile" to="/Profile">
+          <div className="app_icon ">
+          <button className="profile_icon icon">
+            <Link to="/Profile">
               <img src="https://avatars.githubusercontent.com/u/78645691?s=96&v=4" />
             </Link>
           </button>
-          <span className="food_icon">
+          <span className="food_icon icon ">
             <img src={food} alt="arrow" />
           </span>
-          <button className="logout" onClick={logout}>
+          <button className="logout icon" onClick={logout}>
             <h1>Logout</h1>
           </button>
+          </div>
         </form>
 
         <div className="recipe_app">

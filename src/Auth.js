@@ -8,7 +8,8 @@ const NavWrapperTile = styled("div")`
     text-align: center;
     background-color: #e5dbdb;
     height: 450px;
-    margin: 60px 273px;
+    width: fit-content;
+    margin: 3rem 13rem;
     font-weight: 400;
   }
   .user {
@@ -23,7 +24,7 @@ const NavWrapperTile = styled("div")`
   input{
     margin: 10px 0px;
     padding:10px 10px;
-    width:300px;
+    width:70%;
     border-radius:5px;
     border:1px solid #bfa0a0;
   }

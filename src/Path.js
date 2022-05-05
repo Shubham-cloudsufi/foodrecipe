@@ -30,10 +30,19 @@ const Path = () => {
 
   return (
     <div>
-      <Router>{
+      <Router>
        <Navbar /> 
-      }
         <Routes>
+        <Route
+            path="/foodrecipe"
+            element={
+              isAuthenticate ? (
+                <Navigate to="/app" />
+              ) : (
+                <Auth auth={() => setAuthenticate(true)} />
+              )
+            }
+          />
         <Route
             path="/"
             element={
