@@ -15,15 +15,16 @@ const AppWrapperTile = styled("div")`
     justify-content: center;
     align-items: center;
     margin-top: 6.8rem;
-    margin-right: 5rem;
+    margin-right: 12rem;
     margin-bottom: 6.2rem;
   }
   .header {
-    margin: 0.25rem 0 0 1.3rem;
+    margin: 0.25rem 0.5rem 0 1.3rem;
     color: black;
     font-weight: 100;
-    box-shadow: rgb(50 50 93 / 25%) 0px 50px 100px -20px, rgb(0 0 0 / 30%) 0px 30px 60px -30px;
-}
+    box-shadow: rgb(50 50 93 / 25%) 0px 50px 100px -20px,
+      rgb(0 0 0 / 30%) 0px 30px 60px -30px;
+  }
   .recipe_app {
     display: grid;
     grid-template-columns: 15rem 15rem 15rem;
@@ -35,18 +36,22 @@ const AppWrapperTile = styled("div")`
     width: 100%;
     position: fixed;
     height: 3.7rem;
+    right: 0.2rem;
     top: 0px;
-    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+    /* box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
       rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
-      rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+      rgba(255, 255, 255, 0.08) 0px 1px 0px inset; */
+      box-shadow: rgb(255 255 255) 0px 0px 0px 2px,
+      rgb(0 24 44 / 65%) 0px 4px 6px -1px, rgb(0 255 255 / 8%) 0px 1px 0px inset;
+  }
     margin-left: 5rem;
     z-index: 2;
     outline: none;
   }
   #search {
     position: absolute;
-    border: 1px solid rgb(140,141,158);
-    left: 30%;
+    border: 1px solid rgb(140, 141, 158);
+    left: 34%;
     top: 0.62rem;
     width: 29%;
     height: 2.3rem;
@@ -90,7 +95,7 @@ const AppWrapperTile = styled("div")`
     width: 5.2rem;
     height: 2.45rem;
     top: 0.6rem;
-    right: 36%;
+    right: 33%;
     border-radius: 0px 0.4rem 0.4rem 0px;
     cursor: pointer;
   }
@@ -117,13 +122,12 @@ const AppWrapperTile = styled("div")`
       grid-template-columns: 240px 240px;
     }
     .buttons {
-    position: fixed;
-    background-color: white;
-    height: 4.3rem;
-    /* margin-top: -1.5rem; */
-    margin-top: 1rem;
-    width: 100%;
-  }
+      position: fixed;
+      background-color: white;
+      height: 4.3rem;
+      margin-top: 1rem;
+      width: 100%;
+    }
   }
   @media screen and (max-width: 700px) {
     .recipe_app {
@@ -179,27 +183,17 @@ const AppWrapperTile = styled("div")`
     position: fixed;
     background-color: white;
     height: 4.3rem;
-    /* margin-top: -1.5rem; */
-    margin-top: 1.5rem;
+    margin-top: 1rem;
     width: 100%;
   }
   .food_icon img {
-    /* position: absolute; */
     width: 4.3rem;
     height: 3.25rem;
-    /* align-items: center; */
-    /* text-align: right; */
-    /* margin-top: 1.3rem; */
-    /* margin: -3.1rem 0 1.8rem 44rem; */
   }
   .profile_icon img {
-    /* position: absolute; */
     width: 2.5rem;
     height: 2.5rem;
     background-color: white;
-    /* align-items: center; */
-    /* text-align: right; */
-    /* margin-top: 1.3rem; */
     margin: 0.7rem 0 0rem 0rem;
     border-radius: 50%;
     border: 1px solid grey;
@@ -208,22 +202,20 @@ const AppWrapperTile = styled("div")`
   .logout {
     font-weight: 100;
     margin: 0.7rem 0 0rem 0rem;
-    /* position: absolute; */
   }
 
   .logout h1 {
     font-weight: 100;
   }
-  .app_icon{
+  .app_icon {
     float: right;
     display: flex;
-    /* background: red; */
     align-items: center;
     margin: -3.3rem 1.5rem 2rem 0;
     text-align: center;
     border: 1px solid white;
   }
-  .icon{
+  .icon {
     padding: 0px 2px;
     border: 1px solid white;
     background-color: white;
@@ -239,7 +231,7 @@ function App({ logoutx }) {
   const [headertext, setHeaderText] = useState("");
   const [healthLables, setHealthLables] = useState("vegan");
 
-  var url = `https://api.edamam.com/search?q=${inputValue}&app_id=45918ea0&app_key=%203a2b8ca91fd63b1240eaffc66c36f0a0&from=0&to=40&calories=591-722&health=${healthLables}`;
+  var url = `https://api.edamam.com/search?q=${inputValue}&app_id=45918ea0&app_key=${process.env.REACT_APP_API}&from=0&to=40&calories=591-722&health=${healthLables}`;
 
   function getRecipes() {
     setloading(true);
@@ -263,9 +255,8 @@ function App({ logoutx }) {
   const navigate = useNavigate();
   function logout() {
     logoutx();
-    // localStorage.removeItem("Name")
     navigate("auth");
-    localStorage.clear()
+    localStorage.clear();
   }
 
   function change(e) {
@@ -361,17 +352,17 @@ function App({ logoutx }) {
             </select>
           </div>
           <div className="app_icon ">
-          <button className="profile_icon icon">
-            <Link to="/Profile">
-              <img src="https://avatars.githubusercontent.com/u/78645691?s=96&v=4" />
-            </Link>
-          </button>
-          <span className="food_icon icon ">
-            <img src={food} alt="arrow" />
-          </span>
-          <button className="logout icon" onClick={logout}>
-            <h1>Logout</h1>
-          </button>
+            <button className="profile_icon icon">
+              <Link to="/Profile">
+                <img src="https://avatars.githubusercontent.com/u/78645691?s=96&v=4" />
+              </Link>
+            </button>
+            <span className="food_icon icon ">
+              <img src={food} alt="arrow" />
+            </span>
+            <button className="logout icon" onClick={logout}>
+              <h1>Logout</h1>
+            </button>
           </div>
         </form>
 

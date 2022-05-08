@@ -19,7 +19,7 @@ const Path = () => {
   useEffect(() => {
     const isAuthenticate1 = localStorage.getItem("login");
     isAuthenticate1 ? setAuthenticate(true) : setAuthenticate(false);
-    // console.log(isAuthenticate1)
+    console.log(" isAuthenticate1",isAuthenticate1)
   }, []);
 
   // useEffect(() => {

@@ -56,10 +56,10 @@ const Auth = ({ auth }) => {
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
-  const [profile, setProfile] = useState("");
+  const [Password, setPassword] = useState("");
 
   const handle = () => {
-    localStorage.setItem("Name", JSON.stringify({name,age,gender,profile}));
+    localStorage.setItem("Name", JSON.stringify({name,age,gender,Password}));
     auth();
     localStorage.setItem("login", true)
   };
@@ -92,9 +92,9 @@ const Auth = ({ auth }) => {
         {/* <p>PROFILE:</p> */}
         <input
           type="url"
-          placeholder="profile"
-          value={profile}
-          onChange={(e) => setProfile(e.target.value)}
+          placeholder="Password"
+          value={Password}
+          onChange={(e) => setPassword(e.target.value)}
         />
         <div>
           <button className="login"  onClick={handle}>Login</button>
