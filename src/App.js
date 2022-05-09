@@ -231,7 +231,7 @@ function App({ logoutx }) {
   const [headertext, setHeaderText] = useState("");
   const [healthLables, setHealthLables] = useState("vegan");
 
-  var url = `https://api.edamam.com/search?q=${inputValue}&app_id=45918ea0&app_key=${process.env.REACT_APP_API}&from=0&to=40&calories=591-722&health=${healthLables}`;
+  var url = `https://api.edamam.com/search?q=${inputValue}&app_id=45918ea0&app_key=${process.env.REACT_APP_API_KEY}&from=0&to=40&calories=591-722&health=${healthLables}`;
 
   function getRecipes() {
     setloading(true);
