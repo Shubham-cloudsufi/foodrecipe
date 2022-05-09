@@ -9,7 +9,7 @@ const NavWrapperTile = styled("div")`
     background-color: #e5dbdb;
     height: 450px;
     width: fit-content;
-    margin: 3rem 13rem;
+    margin: 5% 10%;
     font-weight: 400;
   }
   .user {
