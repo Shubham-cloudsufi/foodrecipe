@@ -135,7 +135,7 @@ const RecipeTile = ({ recipes }) => {
     <RecipeWrapperTile className="recipeWrapperTile">
       <div className="recipe">
         <div className="recipe__box ">
-          <img className="recipe_img" src={recipes["recipe"]["image"]}></img>
+          <img alt="img" className="recipe_img" src={recipes["recipe"]["image"]}></img>
           <p className="recipe_label">{recipes["recipe"]["label"]}</p>
           <div className="recipe_dishtype ">{recipes["recipe"]["dishType"]} </div>
           <div className="recipe_inline">
@@ -145,6 +145,7 @@ const RecipeTile = ({ recipes }) => {
             </p>
             <a
               type="text"
+              rel="newpage"
               target="_blank"
               className="recipe_url "
               href={recipes["recipe"]["url"]}

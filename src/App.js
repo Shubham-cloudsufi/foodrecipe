@@ -43,7 +43,6 @@ const AppWrapperTile = styled("div")`
       rgba(255, 255, 255, 0.08) 0px 1px 0px inset; */
       box-shadow: rgb(255 255 255) 0px 0px 0px 2px,
       rgb(0 24 44 / 65%) 0px 4px 6px -1px, rgb(0 255 255 / 8%) 0px 1px 0px inset;
-  }
     margin-left: 5rem;
     z-index: 2;
     outline: none;
