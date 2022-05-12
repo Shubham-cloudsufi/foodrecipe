@@ -180,7 +180,7 @@ function Navbar({ setAuthenticate }) {
   return (
     <NavWrapperTile>
       <div className="navbar">
-        {location.pathname === "/foodrecipe" ?
+        {location.pathname === "/foodrecipe/" ?
         <h1 className="head5" to="/app">
           FoodGram
         </h1>: null }
