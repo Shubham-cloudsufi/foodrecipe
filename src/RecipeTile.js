@@ -85,8 +85,9 @@ const RecipeWrapperTile = styled("div")`
     display: flex;
     position: absolute;
     justify-content:center;
+    text-align: center;
     border-radius: 0.1rem;
-    width: 24%;
+    width: 20rem;
     margin: 1.8rem 0 0 0;
     background-color: rgb(180,167,238);
     align-items: center;
@@ -106,6 +107,7 @@ const RecipeWrapperTile = styled("div")`
     margin-top: 0.7rem;
   }
   .arrow img {
+    z-index: -1;
     position: absolute;
     width: 1.5rem;
     height: 1.2rem;
@@ -127,6 +129,12 @@ const RecipeWrapperTile = styled("div")`
     font-weight: 400;
     padding-right: 12rem;
     color: rgb(139, 154, 70);
+  }
+  @media screen and (max-width: 1000px) {
+    .recipe_url {
+    width: 20rem;
+    margin: 1.8rem 0 0 0;
+  }
   }
 `;
 

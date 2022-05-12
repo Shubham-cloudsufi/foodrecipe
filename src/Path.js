@@ -4,7 +4,7 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Navigate,
+  Navigate
 } from "react-router-dom";
 import Navbar from "./Navbar";
 import Auth from "./Auth";
@@ -12,44 +12,64 @@ import Profile from "./Profile";
 import ErrorPage from "./ErrorPage";
 
 const Path = () => {
-  const [isAuthenticate, setAuthenticate] = useState(
-    localStorage.getItem("login")
-  );
+  
+  const local = localStorage.getItem("login");
 
+  const [isAuthenticate, setAuthenticate] = useState(local);
   useEffect(() => {
-    const isAuthenticate1 = localStorage.getItem("login");
-    isAuthenticate1 ? setAuthenticate(true) : setAuthenticate(false);
-    console.log(" isAuthenticate1",isAuthenticate1)
-  }, []);
+    setAuthenticate(local);
+    console.log(local);
+  }, [local]);
 
+
+  const handleLogin = ({ name, age, gender, Password , email }) => {
+    
+    localStorage.setItem(
+      "Name",
+      JSON.stringify({ name, age, gender, Password , email })
+    );
+    setAuthenticate(true);
+    // auth();
+    localStorage.setItem("login", true);
+    // navigate("/app");
+  };
+
+  // useEffect(() => {
+    // const isAuthenticate1 = localStorage.getItem("login");
+    // isAuthenticate1 ? setAuthenticate(true) : setAuthenticate(false);
+    // console.log(" isAuthenticate1",isAuthenticate1)
+  // }, []);
+
+  console.log("LOCAL", local);
+  
   // useEffect(() => {
   //   localStorage.setItem("login", isAuthenticate);
   // }, [isAuthenticate]);
 
-  console.log(isAuthenticate);
+  // console.log("path",isAuthenticate);
 
   return (
     <div>
       <Router>
-       <Navbar /> 
+        <Navbar setAuthenticate={setAuthenticate} />
         <Routes>
-        <Route
+          <Route
             path="/foodrecipe"
             element={
               isAuthenticate ? (
                 <Navigate to="/app" />
               ) : (
-                <Auth auth={() => setAuthenticate(true)} />
+                <Auth handleLogin={handleLogin} />
               )
             }
           />
-        <Route
+          <Route
             path="/"
             element={
               isAuthenticate ? (
                 <Navigate to="/app" />
               ) : (
-                <Auth auth={() => setAuthenticate(true)} />
+                <Auth handleLogin={handleLogin}  />
               )
             }
           />
@@ -59,7 +79,7 @@ const Path = () => {
               isAuthenticate ? (
                 <Navigate to="/app" />
               ) : (
-                <Auth auth={() => setAuthenticate(true)} />
+                <Auth handleLogin={handleLogin}  />
               )
             }
           />

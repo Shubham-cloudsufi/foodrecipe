@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import RecipeTile from "./RecipeTile";
 import axios from "axios";
 import SkeletonArticle from "./SkeletonArticle";
-import food from "./Icons/food.svg";
-import { Link, useNavigate } from "react-router-dom";
+
 const AppWrapperTile = styled("div")`
   html {
     font-size: 16px;
@@ -14,9 +13,10 @@ const AppWrapperTile = styled("div")`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 6.8rem;
+    margin-top: 8.8rem;
     margin-right: 6rem;
     margin-bottom: 6.2rem;
+    box-sizing: border-box;
   }
   .header {
     margin: 0.25rem 0.5rem 0 1.3rem;
@@ -35,16 +35,16 @@ const AppWrapperTile = styled("div")`
     margin: 0 auto;
     width: 100%;
     position: fixed;
-    height: 3.7rem;
+    height: 6.9rem;
     right: 0.2rem;
-    top: 0px;
+    top: 57px;
     /* box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
       rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
       rgba(255, 255, 255, 0.08) 0px 1px 0px inset; */
-      box-shadow: rgb(255 255 255) 0px 0px 0px 2px,
+    /* box-shadow: rgb(255 255 255) 0px 0px 0px 2px,
       rgb(0 24 44 / 65%) 0px 4px 6px -1px, rgb(0 255 255 / 8%) 0px 1px 0px inset;
-    margin-left: 5rem;
-    z-index: 2;
+    margin-left: 5rem; */
+    /* z-index: 1; */
     outline: none;
   }
   #search {
@@ -65,11 +65,12 @@ const AppWrapperTile = styled("div")`
     margin-top: 0.3rem;
     position: absolute;
     display: inline;
-    text-align: end;
+    text-align: center;
     align-items: center;
     padding: 0 0.5rem;
     border-radius: 10px;
-    margin-left: 38rem;
+    margin-top: 2.2rem;
+    /* margin-left: 38rem; */
     border: 1px solid rgb(196, 175, 175);
   }
   .close-btn {
@@ -106,8 +107,9 @@ const AppWrapperTile = styled("div")`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 9.3rem 19.5rem;
+    margin: 50% 0 0 135%;
     height: 3rem;
+    background-color: yellow;
     border-radius: 0.3rem;
     color: black;
     width: 25rem;
@@ -121,11 +123,17 @@ const AppWrapperTile = styled("div")`
       grid-template-columns: 240px 240px;
     }
     .buttons {
-      position: fixed;
-      background-color: white;
-      height: 4.3rem;
-      margin-top: 1rem;
-      width: 100%;
+      justify-content: center;
+    }
+    .app-refresh {
+      margin: 50% 0 0 65%;
+    }
+    #search {
+      left: 25%;
+      width: 50%;
+    }
+    .app_submit {
+      right: 20%;
     }
   }
   @media screen and (max-width: 700px) {
@@ -133,12 +141,31 @@ const AppWrapperTile = styled("div")`
       display: grid;
       grid-template-columns: 15rem;
     }
+    .app-refresh {
+      margin: 50% 0 0 -10%;
+    }
+    #search {
+      left: 10%;
+      width: 80%;
+    }
+    .app_submit {
+      right: 3%;
+    }
+  }
+
+  @media screen and (max-width: 1000px) {
+    .app{
+      box-sizing: border-box;
+    }
   }
 
   @media screen and (max-width: 500px) {
     .recipe_app {
       display: grid;
       grid-template-columns: 240px;
+    }
+    .app{
+      box-sizing: border-box;
     }
   }
 
@@ -159,69 +186,35 @@ const AppWrapperTile = styled("div")`
   }
 
   .selectValue {
-    display: list-item;
-    margin-left: 36rem;
-    margin-top: 0.4rem;
-    width: 5.45rem;
+    /* display: list-item; */
+    /* margin-left: 36rem; */
+    /* margin-top: 0.4rem; */
+    /* width: 5.45rem; */
     border: 1px solid rgb(62, 62, 82);
     height: 2.2rem;
     border-radius: 0.3rem;
     cursor: pointer;
   }
   .app_healthlable {
-    display: list-item;
-    cursor: pointer;
-    margin-left: 42rem;
-    margin-top: -2.2rem;
+    /* display: list-item; */
+    /* cursor: pointer; */
+    /* margin-left: 42rem; */
+    /* margin-top: -2.2rem; */
     width: 5rem;
     border: 1px solid rgb(62, 62, 82);
     height: 2.2rem;
     border-radius: 0.3rem;
   }
   .buttons {
-    position: fixed;
-    background-color: white;
-    height: 4.3rem;
-    margin-top: 1rem;
-    width: 100%;
-  }
-  .food_icon img {
-    width: 4.3rem;
-    height: 3.25rem;
-  }
-  .profile_icon img {
-    width: 2.5rem;
-    height: 2.5rem;
-    background-color: white;
-    margin: 0.7rem 0 0rem 0rem;
-    border-radius: 50%;
-    border: 1px solid grey;
-  }
-
-  .logout {
-    font-weight: 100;
-    margin: 0.7rem 0 0rem 0rem;
-  }
-
-  .logout h1 {
-    font-weight: 100;
-  }
-  .app_icon {
-    float: right;
     display: flex;
-    align-items: center;
-    margin: -3.3rem 1.5rem 2rem 0;
-    text-align: center;
-    border: 1px solid white;
-  }
-  .icon {
-    padding: 0px 2px;
-    border: 1px solid white;
-    background-color: white;
+    justify-content: center;
+    top: 1rem;
+    height: 4.3rem;
+    margin: 3.2rem 0% 1% 1%;
   }
 `;
 
-function App({ logoutx }) {
+function App() {
   const [inputValue, setInputValue] = useState("");
   const [recipes, setrecipes] = useState([]);
   const [isLoading, setloading] = useState(false);
@@ -230,7 +223,13 @@ function App({ logoutx }) {
   const [headertext, setHeaderText] = useState("");
   const [healthLables, setHealthLables] = useState("vegan");
 
-  var url =  `https://api.edamam.com/search?q=${inputValue}&app_id=45918ea0&app_key=${process.env.REACT_APP_API}&from=0&to=40&calories=591-722&health=${healthLables}`;
+  var url = `https://api.edamam.com/search?q=${inputValue}&app_id=45918ea0&app_key=${process.env.REACT_APP_API}&from=0&to=40&calories=591-722&health=${healthLables}`;
+
+  useEffect(() => {
+    console.log("iside app");
+  }, []);
+
+  console.log("localstorage", localStorage.getItem("login"));
 
   function getRecipes() {
     setloading(true);
@@ -251,12 +250,6 @@ function App({ logoutx }) {
     e.preventDefault();
     getRecipes();
   };
-  const navigate = useNavigate();
-  function logout() {
-    logoutx();
-    navigate("auth");
-    localStorage.clear();
-  }
 
   function change(e) {
     setCaloriesFilterValue(e.target.value);
@@ -279,7 +272,6 @@ function App({ logoutx }) {
     <AppWrapperTile>
       <div className="app ">
         <form className="app_form" onSubmit={onSubmit}>
-          <h1 className="header">FoodGram</h1>
           <input
             id="search"
             type="text"
@@ -350,19 +342,7 @@ function App({ logoutx }) {
               </option>
             </select>
           </div>
-          <div className="app_icon ">
-            <button className="profile_icon icon">
-              <Link to="/Profile">
-                <img src="https://avatars.githubusercontent.com/u/78645691?s=96&v=4" />
-              </Link>
-            </button>
-            <span className="food_icon icon ">
-              <img src={food} alt="arrow" />
-            </span>
-            <button className="logout icon" onClick={logout}>
-              <h1>Logout</h1>
-            </button>
-          </div>
+          <div className="app_icon "></div>
         </form>
 
         <div className="recipe_app">
