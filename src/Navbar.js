@@ -180,40 +180,45 @@ function Navbar({ setAuthenticate }) {
   return (
     <NavWrapperTile>
       <div className="navbar">
-        {location.pathname === "/foodrecipe/" ?
-        <h1 className="head5" to="/app">
+        <h1 className="head">
           FoodGram
-        </h1>: null }
-        {location.pathname === "/app" ? (
+        </h1>
+        {/* {location.pathname === "/app" ? (
           <h1 className="head" to="/app">
             FoodGram
           </h1>
-        ) : null}
+        ) : null} */}
         {/* {location.pathname === "/app" ? (
           <h1 className="head2" to="/app">
             FoodGram
           </h1>
         ) : null} */}
-        {location.pathname === "/auth" ? (
+        {/* {location.pathname === "/auth" ? (
           <span className="food_icon2">
             <img src={food} alt="arrow" />
           </span>
-        ) : null}
-        {location.pathname === "/Profile" ? (
+        ) : null} */}
+        <span className="food_icon">
+            <img src={food} alt="arrow" />
+          </span>
+        {/* {location.pathname === "/Profile" ? (
           <span className="food_icon">
             <img src={food} alt="arrow" />
           </span>
-        ) : null}
-        {location.pathname === "/" ? (
+        ) : null} */}
+        {/* <span className="food_icon3">
+            <img src={food} alt="arrow" />
+          </span> */}
+        {/* {location.pathname === "/Profile" ? (
           <span className="food_icon3">
             <img src={food} alt="arrow" />
           </span>
-        ) : null}
-        {location.pathname === "/app" ? (
+        ) : null} */}
+        {/* {location.pathname === "/app" ? (
           <span className="food_icon">
             <img src={food} alt="arrow" />
           </span>
-        ) : null}
+        ) : null} */}
         <div className="app_icon">
           {location.pathname === "/Profile" ? (
             <button
