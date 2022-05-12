@@ -96,7 +96,7 @@ const RecipeWrapperTile = styled("div")`
     font-weight: 300;
     text-decoration: none;
     color: rgb(63,60,60);
-    padding-left: 0.3rem;
+    padding-left: 0.59rem;
   }
   .recipe_url:hover {
     background-color: rgb(61, 37, 133);
