@@ -166,6 +166,7 @@ const AppWrapperTile = styled("div")`
     }
     .app{
       box-sizing: border-box;
+      margin-right: 7rem;
     }
   }
 

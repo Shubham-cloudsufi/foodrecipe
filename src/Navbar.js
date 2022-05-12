@@ -16,7 +16,17 @@ const NavWrapperTile = styled("div")`
   }
 
   .head {
-    margin: 0.25rem 0 0 4.1rem;
+    margin: 0.25rem 0 0 4rem;
+    color: black;
+    position: absolute;
+    float: left;
+    font-weight: 100;
+    box-shadow: rgb(50 50 93 / 25%) 0px 50px 100px -20px,
+      rgb(0 0 0 / 30%) 0px 30px 60px -30px;
+  }
+
+  .head2{
+    margin: 0.25rem 0 0 1rem;
     color: black;
     position: absolute;
     float: left;
@@ -95,20 +105,20 @@ const NavWrapperTile = styled("div")`
       right: 2%;
     }
     .head {
-    margin: 0.25rem 0 0 3rem;
-  }
-  .food_icon img {
-    width: 3rem;
-    height: 3rem;
-    /* right: 26.5%; */
-  }
-  .logout {
-    right: 3%;
-  }
+      margin: 0.25rem 0 0 3rem;
+    }
+    .food_icon img {
+      width: 3rem;
+      height: 3rem;
+      /* right: 26.5%; */
+    }
+    .logout {
+      right: 3%;
+    }
 
-  .profile_icon img {
-    right: 97px;
-  }
+    .profile_icon img {
+      right: 97px;
+    }
   }
   /* @media screen and (max-width: 1000px) {
   .head {
@@ -158,9 +168,19 @@ function Navbar({ setAuthenticate }) {
   return (
     <NavWrapperTile>
       <div className="navbar">
-        <h1 className="head" to="/app">
+        {/* <h1 className="head" to="/app">
           FoodGram
-        </h1>
+        </h1> */}
+        {location.pathname === "/app" ? (
+          <h1 className="head" to="/app">
+            FoodGram
+          </h1>
+        ) : null}
+        {location.pathname === "/auth" ? (
+          <h1 className="head2" to="/app">
+            FoodGram
+          </h1>
+        ) : null}
         {location.pathname === "/auth" ? (
           <span className="food_icon2">
             <img src={food} alt="arrow" />
@@ -201,7 +221,7 @@ function Navbar({ setAuthenticate }) {
             </button>
           ) : null}
         </div>
-        
+
         {location.pathname === "/app" ? (
           <button className="logout icon" onClick={logoutnow}>
             <h1>Logout</h1>
