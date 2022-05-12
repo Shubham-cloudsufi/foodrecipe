@@ -23,11 +23,13 @@
   width: 329px;
   height: 227px;
   margin-top: 40px;
+  margin-left: 0.7rem;
 }
 .recipe_label {
   max-width: 380px;
   margin-top: 5px;
   height: 20px;
+  margin-left: 0.7rem;
 }
 
 .recipe_dishtype {
@@ -35,6 +37,7 @@
   font-size: 20px;
   font-weight: 400;
   width: 300px;
+  margin-left: 0.7rem;
 }
 
 

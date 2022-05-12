@@ -26,7 +26,7 @@ const NavWrapperTile = styled("div")`
   }
 
   .head2{
-    margin: 0.25rem 0 0 1rem;
+    margin: 0.7rem 0 0 0.5rem;
     color: black;
     position: absolute;
     float: left;
@@ -42,6 +42,7 @@ const NavWrapperTile = styled("div")`
     position: relative;
     bottom: 0.3rem;
     /* right: 80px; */
+    margin: 0.7rem 0 0 0.5rem;
   }
   .food_icon2 {
     width: 3.3rem;
@@ -105,7 +106,7 @@ const NavWrapperTile = styled("div")`
       right: 2%;
     }
     .head {
-      margin: 0.25rem 0 0 3rem;
+      margin: 1rem 0 0 3.7rem;
     }
     .food_icon img {
       width: 3rem;
@@ -118,6 +119,7 @@ const NavWrapperTile = styled("div")`
 
     .profile_icon img {
       right: 97px;
+      margin:0.2rem 0 0 0rem;
     }
   }
   /* @media screen and (max-width: 1000px) {
