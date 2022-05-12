@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/foodrecipe/static/css/main.d7a4644c.css",
-    "main.js": "/foodrecipe/static/js/main.3a9937ef.js",
+    "main.css": "/foodrecipe/static/css/main.5b1fe163.css",
+    "main.js": "/foodrecipe/static/js/main.82c65e5b.js",
     "static/media/error.svg": "/foodrecipe/static/media/error.bdf1c60c297dc6528f56fe6a382dacdf.svg",
     "static/media/login.svg": "/foodrecipe/static/media/login.79872296556418253ca4b3289f856112.svg",
     "static/media/food.svg": "/foodrecipe/static/media/food.a42f78947011fbed77c5a7dc1021cba7.svg",
     "index.html": "/foodrecipe/index.html",
     "static/media/outside.svg": "/foodrecipe/static/media/outside.b274745c673216f6f4d61d7e70c38f93.svg",
-    "main.d7a4644c.css.map": "/foodrecipe/static/css/main.d7a4644c.css.map",
-    "main.3a9937ef.js.map": "/foodrecipe/static/js/main.3a9937ef.js.map"
+    "main.5b1fe163.css.map": "/foodrecipe/static/css/main.5b1fe163.css.map",
+    "main.82c65e5b.js.map": "/foodrecipe/static/js/main.82c65e5b.js.map"
   },
   "entrypoints": [
-    "static/css/main.d7a4644c.css",
-    "static/js/main.3a9937ef.js"
+    "static/css/main.5b1fe163.css",
+    "static/js/main.82c65e5b.js"
   ]
 }
