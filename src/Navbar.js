@@ -56,7 +56,7 @@ const NavWrapperTile = styled("div")`
     text-align: right;
     font-weight: 400;
     float: right;
-    margin: 10rem 0rem -0.5rem 0.8rem;
+    margin: 10rem 0rem -0.5rem -2.2rem;
   }
   .logout {
     font-weight: 100;
@@ -92,9 +92,7 @@ const NavWrapperTile = styled("div")`
   }
   @media screen and (max-width: 500px) {
     .nav_button {
-      float: none;
-      display: block;
-      text-align: left;
+      right: 2%;
     }
     .head {
     margin: 0.25rem 0 0 3rem;

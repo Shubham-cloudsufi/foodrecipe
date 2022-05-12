@@ -24,10 +24,9 @@ const ProfileWrapperTile = styled("div")`
 }
 @media screen and (max-width: 1000px){
   .data{
-    background-color:#d9c7c7;
-    margin: 10% 5%;
-    width: 30rem;
-    height:350px;
+    margin: 19% 20%;
+    width: 74%;
+    height: 62%;
 }
 
 .data_entry{
