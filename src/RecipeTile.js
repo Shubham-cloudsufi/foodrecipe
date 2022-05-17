@@ -20,7 +20,9 @@ const RecipeWrapperTile = styled("div")`
     border-radius: 0.5rem 0.5rem 0px 0px;
     width: 20.5rem;
     height: 15rem;
-    margin-top: -1.2rem;
+    /* margin-top: -1.2rem; */
+    margin-left: 0;
+    margin-top: auto;
   }
   .recipe_img:hover {
     transition: all 1s;
@@ -29,6 +31,7 @@ const RecipeWrapperTile = styled("div")`
     width: 20.5rem;
     display: grid;
     height: 21.5rem;
+    /* margin-left: 0.7rem; */
     box-shadow: rgba(51, 89, 128, 0.2) 0px 8px 24px;
   }
   .recipe__box:hover {
@@ -46,6 +49,7 @@ const RecipeWrapperTile = styled("div")`
     font-weight: 500;
     font-size: 1.1rem;
     color: rgb(15, 14, 14);
+    margin: 0 0 0 0px;
     text-transform: uppercase;
     background-color: rgb(251, 251, 251);
   }
