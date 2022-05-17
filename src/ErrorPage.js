@@ -1,5 +1,5 @@
 import React from "react";
-import error from "./Icons/error.svg";
+import error from "./Icons/PageNotFound.svg";
 import styled from "styled-components";
 
 const ErrorWrapperTile = styled("div")`

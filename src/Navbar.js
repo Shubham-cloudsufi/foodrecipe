@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import food from "./Icons/food.svg";
 import styled from "styled-components";
+import { ReactComponent as FoodBackGround } from "./Icons/FoodLogo.svg";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 
 const NavWrapperTile = styled("div")`
   .navbar {
     position: fixed;
     top: 0;
-    width: 99%;
+    width: 100%;
     background-color: white;
     height: 54px;
     z-index: 1;
@@ -16,68 +16,50 @@ const NavWrapperTile = styled("div")`
   }
 
   .head {
-    margin: 1rem 0 0 4.3rem;
-    color: black;
-    position: absolute;
+    margin: 0rem 0 0 0rem;
     float: left;
     font-weight: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     box-shadow: rgb(50 50 93 / 25%) 0px 50px 100px -20px,
       rgb(0 0 0 / 30%) 0px 30px 60px -30px;
   }
 
-  .head2{
-    margin: 0.7rem 0 0 0.5rem;
-    color: black;
-    position: absolute;
-    float: left;
-    font-weight: 100;
-    box-shadow: rgb(50 50 93 / 25%) 0px 50px 100px -20px,
-      rgb(0 0 0 / 30%) 0px 30px 60px -30px;
+  .link {
+    text-decoration: none;
+    color: grey;
   }
 
-  .head5{
-    margin: 0.7rem 0 0 0.5rem;
-    color: black;
-    position: absolute;
-    float: left;
-    font-weight: 100;
-    box-shadow: rgb(50 50 93 / 25%) 0px 50px 100px -20px,
-      rgb(0 0 0 / 30%) 0px 30px 60px -30px;
-  }
-
-  .food_icon img {
-    width: 4.3rem;
+  .food_icon {
+    width: 3.25rem;
     height: 3.25rem;
-    /* float: right; */
-    position: relative;
     bottom: 0.3rem;
-    /* right: 80px; */
-    margin: 0.7rem 0 0 0.5rem;
-  }
-  .food_icon2 {
-    width: 3.3rem;
-    height: 2rem;
-    float: right;
-    position: relative;
-    bottom: 0.2rem;
-    right: 1.4%;
-  }
-  .food_icon3 {
-    width: 3.3rem;
-    height: 2rem;
-    float: right;
-    position: relative;
-    bottom: 0.2rem;
-    right: 1.4%;
+    margin: -0.4rem 0 0 0.5rem;
+    .food_logo_first {
+      fill: grey;
+    }
+    .food_logo_second {
+      fill: #e3ceb9;
+    }
+    .food_logo_third {
+      fill: pink;
+    }
+    .food_logo_fourth {
+      fill: red;
+    }
+    .food_logo_fifth {
+      fill: red;
+    }
+    .food_logo_sixth {
+      fill: red;
+    }
   }
 
   .nav_button {
-    position: absolute;
     padding: 8px 10px;
-    text-align: right;
     font-weight: 400;
-    float: right;
-    margin: 10rem 0rem -0.5rem -2.2rem;
+    margin: 4rem 0rem 0rem 0;
   }
   .logout {
     font-weight: 100;
@@ -107,16 +89,19 @@ const NavWrapperTile = styled("div")`
     float: right;
     display: flex;
     align-items: center;
-    margin: -3.3rem 1.5rem 2rem 0;
+    margin: -3.3rem 0.5rem 2rem 0;
     text-align: center;
     border: 1px solid white;
+  }
+  .select_app {
+    margin: 83px 0 0 0;
   }
   @media screen and (max-width: 500px) {
     .nav_button {
       right: 2%;
     }
     .head {
-      margin: 1rem 0 0 3.7rem;
+      margin: 0 0 0 0;
     }
     .food_icon img {
       width: 3rem;
@@ -129,7 +114,7 @@ const NavWrapperTile = styled("div")`
 
     .profile_icon img {
       right: 97px;
-      margin:0.2rem 0 0 0rem;
+      margin: 0.2rem 0 0 0rem;
     }
   }
   /* @media screen and (max-width: 1000px) {
@@ -148,10 +133,43 @@ const NavWrapperTile = styled("div")`
     right: 20%;
   }
   } */
+  .dropdown {
+    cursor: pointer;
+    background-color: white;
+  }
+  .dropdown_btn {
+    padding: 0 0 0 0;
+    margin: 55px 0 0 0;
+  }
+  .dropdown_item {
+    padding: 0 0 0 0;
+    text-decoration: none;
+    border-color: white;
+    border: 1px solid grey;
+    width: 4rem;
+    cursor: pointer;
+  }
+  .image_dropdown {
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+  }
+  .dropdown_now {
+    padding: 0 0 0 0;
+  }
+  .dropdown_link {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+  }
+  .fas .fa-caret-down {
+    background-color: yellow;
+  }
 `;
 
 function Navbar({ setAuthenticate }) {
-  const [visible, setVisible] = useState(false);
+  // const [visible, setVisible] = useState(false);
+  const [isActive, setActive] = useState(false);
   const location = useLocation();
   // console.log("uselocation hook", location);
   // console.log("logoutx",logoutx)
@@ -164,6 +182,7 @@ function Navbar({ setAuthenticate }) {
     // logoutx();
     localStorage.clear();
     setAuthenticate(false);
+    setActive(false)
     // navigate("/auth");
     console.log("loging out now");
     // localStorage.getItem("login", false);
@@ -175,76 +194,71 @@ function Navbar({ setAuthenticate }) {
     let loginData = localStorage.getItem("login");
     // console.log("login data coming from here", loginData);
     // console.log("first second", loginData);
-  }, []);
+    setActive(isActive);
+  }, [isActive]);
 
   return (
     <NavWrapperTile>
       <div className="navbar">
         <h1 className="head">
-          FoodGram
+          <FoodBackGround className="food_icon " />
+          <Link className="link" to="/">
+            FoodGram
+          </Link>
         </h1>
-        {/* {location.pathname === "/app" ? (
-          <h1 className="head" to="/app">
-            FoodGram
-          </h1>
-        ) : null} */}
-        {/* {location.pathname === "/app" ? (
-          <h1 className="head2" to="/app">
-            FoodGram
-          </h1>
-        ) : null} */}
-        {/* {location.pathname === "/auth" ? (
-          <span className="food_icon2">
-            <img src={food} alt="arrow" />
-          </span>
-        ) : null} */}
-        <span className="food_icon">
-            <img src={food} alt="arrow" />
-          </span>
-        {/* {location.pathname === "/Profile" ? (
-          <span className="food_icon">
-            <img src={food} alt="arrow" />
-          </span>
-        ) : null} */}
-        {/* <span className="food_icon3">
-            <img src={food} alt="arrow" />
-          </span> */}
-        {/* {location.pathname === "/Profile" ? (
-          <span className="food_icon3">
-            <img src={food} alt="arrow" />
-          </span>
-        ) : null} */}
-        {/* {location.pathname === "/app" ? (
-          <span className="food_icon">
-            <img src={food} alt="arrow" />
-          </span>
-        ) : null} */}
+
         <div className="app_icon">
           {location.pathname === "/Profile" ? (
             <button
               className="nav_button"
               onClick={() => {
                 logout();
-                setVisible(true);
+                setActive(false);
               }}
             >
               Back
             </button>
           ) : null}
           {location.pathname === "/app" ? (
+            <div className="dropdown">
+              <div
+                className="dropdown_btn"
+                onClick={() => setActive(!isActive)}
+              >
+                <img
+                  className="image_dropdown"
+                  src="https://avatars.githubusercontent.com/u/78645691?s=96&v=4"
+                />
+                <span className="fas fa-caret-down"></span>
+              </div>
+              {isActive && (
+                <div className="dropdown_now">
+                  <div className="dropdown_item">
+                    <Link className="dropdown_link" to="/Profile">
+                      Profile
+                    </Link>
+                  </div>
+                  <div className="dropdown_item" onClick={logoutnow}>
+                    logout
+                  </div>
+                </div>
+              )}
+            </div>
+          ) : null}
+        </div>
+        {/* {location.pathname === "/app" ? (
             <button className="profile_icon icon">
               <Link to="/Profile">
                 <img src="https://avatars.githubusercontent.com/u/78645691?s=96&v=4" />
               </Link>
             </button>
-          ) : null}
-        </div>
+          ) : null}  */}
 
-        {location.pathname === "/app" ? (
+        {/* {location.pathname === "/app" ? (
           <button className="logout icon" onClick={logoutnow}>
             <h1>Logout</h1>
           </button>
-        ) : null}
+        ) : null}  */}
       </div>
     </NavWrapperTile>
   );

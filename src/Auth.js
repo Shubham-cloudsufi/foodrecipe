@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import login from "./Icons/login.svg";
-import { useLocation, useNavigate } from "react-router-dom";
+import { ReactComponent as LoginPageSvg } from "./Icons/Login.svg";
+import { useNavigate } from "react-router-dom";
 
 const NavWrapperTile = styled("div")`
   .header {
     display: flex;
     text-align: center;
-    background-color: #e5dbdb;
-    width: fit-content;
-    margin: 8% 8% 8% 8%;
+    justify-content: center;
+    background-color: #e3ceb9;
+    margin: 5% 8% 5% 8%;
     font-weight: 400;
   }
   .user {
@@ -43,33 +43,46 @@ const NavWrapperTile = styled("div")`
   }
 
   .login_img {
-    width: 35%;
-    height: 35%;
-    margin: 10% 0 0 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .login_icon_first{
+      fill: lightgreen;
+    }
+    .login_icon_second{
+      fill: lightgreen;
+    }
+    .login_icon_third{
+      fill: skyblue;
+    }
+    .login_icon_fourth{
+      fill: #C4A484;
+    }
   }
   .input_data {
     margin: 10% 0 0 5%;
   }
   @media screen and (max-width: 1000px) {
-    .header {
+    /* .header {
       margin: 18% 8% 8% 8%;
-    }
+    } */
 
-    .login_img {
+    /* .login_img {
       margin: 20% 0 0 5%;
-    }
+    } */
   }
   @media screen and (max-width: 500px) {
-    .header {
+    /* .header {
       margin: 28% 8% 8% 8%;
-    }
+    } */
 
-    .login_img {
+    /* .login_img {
       margin: 50% 0 0 5%;
-    }
+    } */
   }
 `;
-const Auth = ({ auth, handleLogin }) => {
+const Auth = ({  handleLogin }) => {
+
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
@@ -79,14 +92,12 @@ const Auth = ({ auth, handleLogin }) => {
   console.log("iside auth");
 
   const navigate = useNavigate();
-  // function handle() {
-  //   ;
-  // }
 
   return (
     <NavWrapperTile>
       <div className="header">
-        <img alt="login" className="login_img" src={login} />
+        <LoginPageSvg className="login_img" />
+        {/* <img alt="login" className="login_img" src={login} /> */}
         {/* <p>NAME:</p> */}
         <div className="input_data">
           <input
@@ -126,6 +137,7 @@ const Auth = ({ auth, handleLogin }) => {
             <button
               className="login"
               onClick={() => {
+                
                 handleLogin({ name, age, gender, Password, email });
                 navigate("/app");
               }}

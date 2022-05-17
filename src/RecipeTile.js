@@ -1,5 +1,5 @@
 import React from "react";
-import outside from "./Icons/outside.svg";
+import outside from "./Icons/LinkToRecipe.svg";
 import styled from "styled-components";
 
 const RecipeWrapperTile = styled("div")`
@@ -97,6 +97,7 @@ const RecipeWrapperTile = styled("div")`
     text-decoration: none;
     color: rgb(63,60,60);
     padding-left: 0.59rem;
+    z-index: -1;
   }
   .recipe_url:hover {
     background-color: rgb(61, 37, 133);

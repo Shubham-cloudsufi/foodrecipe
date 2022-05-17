@@ -2,12 +2,10 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import RecipeTile from "./RecipeTile";
 import axios from "axios";
+import { ReactComponent as SearchBackground } from "./Icons/NoResultIcon.svg";
 import SkeletonArticle from "./SkeletonArticle";
 
 const AppWrapperTile = styled("div")`
-  html {
-    font-size: 16px;
-  }
   .app {
     display: flex;
     flex-direction: column;
@@ -35,28 +33,17 @@ const AppWrapperTile = styled("div")`
     margin: 0 auto;
     width: 100%;
     position: fixed;
-    height: 6.9rem;
-    right: 0.2rem;
+    height: 8.7rem;
+    right: 0rem;
     top: 57px;
-    /* box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
-      rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
-      rgba(255, 255, 255, 0.08) 0px 1px 0px inset; */
-    /* box-shadow: rgb(255 255 255) 0px 0px 0px 2px,
-      rgb(0 24 44 / 65%) 0px 4px 6px -1px, rgb(0 255 255 / 8%) 0px 1px 0px inset;
-    margin-left: 5rem; */
-    z-index: 1;
     outline: none;
   }
   #search {
-    position: absolute;
-    border: 1px solid rgb(140, 141, 158);
-    left: 34%;
-    top: 0.62rem;
-    width: 29%;
+    border: 1px solid rgb(140,141,158);
+    width: 25%;
     height: 2.3rem;
-    border-radius: 0.5rem;
+    border-radius: 0.5rem 0 0 0.5rem;
     padding-left: 1rem;
-    margin-right: 3.1rem;
   }
   .cal {
     font-weight: 100;
@@ -70,7 +57,6 @@ const AppWrapperTile = styled("div")`
     padding: 0 0.5rem;
     border-radius: 10px;
     margin-top: 2.2rem;
-    /* margin-left: 38rem; */
     border: 1px solid rgb(196, 175, 175);
   }
   .close-btn {
@@ -89,31 +75,58 @@ const AppWrapperTile = styled("div")`
   }
   .app_submit {
     border: inherit;
-    background-color: rgb(126, 126, 219);
+    background-color: #6c63ff;
     color: white;
-    position: absolute;
+    display: flex;
     width: 5.2rem;
     height: 2.45rem;
-    top: 0.6rem;
-    right: 33%;
-    border-radius: 0px 0.4rem 0.4rem 0px;
+    border-radius: 0px 0.4rem 0.4rem 0;
     cursor: pointer;
+    justify-content: center;
+    align-items: center;
   }
   .app_submit:hover {
     background-color: rgb(22, 22, 240);
-    transition: all 1s;
+    transition: all 0.5s;
   }
-  .app-refresh {
+  .app_refresh {
     display: flex;
+    width: 25rem;
     justify-content: center;
     align-items: center;
-    margin: 50% 0 0 135%;
-    height: 3rem;
-    background-color: yellow;
-    border-radius: 0.3rem;
-    color: black;
-    width: 25rem;
-    text-shadow: 0 0 80px rgb(192 219 255 / 75%), 0 0 32px rgb(65 120 255 / 24%);
+    margin: 2rem 0 0rem 9rem;
+  }
+
+  .app_refresh_p {
+    margin-top: 0rem;
+    margin-left: 3rem;
+    width: 100%;
+  }
+
+  .search_food {
+    text-align: center;
+    margin-top: 4rem;
+  }
+  .noresult_icon {
+    width: 20rem;
+    height: 10rem;
+    margin: 0rem 0 0 6rem;
+    right: 0;
+    .noresult_icon_first {
+      fill: yellow;
+    }
+    .noresult_icon_second {
+      fill: red;
+    }
+    .noresult_icon_third{
+      fill: orange;
+    }
+    .noresult_icon_fourth{
+      fill: orange;
+    }
+    .noresult_icon_fifth{
+      fill: white;
+    }
   }
 
   @media screen and (max-width: 1000px) {
@@ -126,35 +139,43 @@ const AppWrapperTile = styled("div")`
       justify-content: center;
     }
     .app-refresh {
-      margin: 50% 0 0 65%;
+      /* margin: 50% 0 0 65%; */
+      /* top: 112%;*/
+      /* top: 38.5%;  */
     }
-    #search {
+    /* #search {
       left: 25%;
       width: 50%;
-    }
-    .app_submit {
+    } */
+    /* .app_submit {
       right: 20%;
-    }
+    } */
   }
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 500px) {
     .recipe_app {
       display: grid;
       grid-template-columns: 15rem;
     }
     .app-refresh {
-      margin: 50% 0 0 -10%;
+      /* margin: 50% 0 0 -10%; */
+      /* top: 112%;*/
+      /* top: 25rem;  */
+      /* left:0.5rem; */
     }
     #search {
       left: 10%;
-      width: 80%;
+      width: 70%;
     }
-    .app_submit {
-      right: 3%;
+    /* .app_submit {
+      right: 10%;
+    } */
+    .search_food img {
+      /* margin: 0 0 0 6.5rem; */
     }
   }
 
   @media screen and (max-width: 1000px) {
-    .app{
+    .app {
       box-sizing: border-box;
     }
   }
@@ -164,7 +185,7 @@ const AppWrapperTile = styled("div")`
       display: grid;
       grid-template-columns: 240px;
     }
-    .app{
+    .app {
       box-sizing: border-box;
       margin-right: 7rem;
     }
@@ -187,20 +208,14 @@ const AppWrapperTile = styled("div")`
   }
 
   .selectValue {
-    /* display: list-item; */
-    /* margin-left: 36rem; */
-    /* margin-top: 0.4rem; */
-    /* width: 5.45rem; */
     border: 1px solid rgb(62, 62, 82);
     height: 2.2rem;
     border-radius: 0.3rem;
     cursor: pointer;
+    width: 5rem;
+    margin-right: 1rem;
   }
   .app_healthlable {
-    /* display: list-item; */
-    /* cursor: pointer; */
-    /* margin-left: 42rem; */
-    /* margin-top: -2.2rem; */
     width: 5rem;
     border: 1px solid rgb(62, 62, 82);
     height: 2.2rem;
@@ -211,7 +226,15 @@ const AppWrapperTile = styled("div")`
     justify-content: center;
     top: 1rem;
     height: 4.3rem;
-    margin: 3.2rem 0% 1% 1%;
+    margin: 1rem 0 1% 1%;
+  }
+  .input_button_search{
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    height: auto;
+    justify-content: center;
+    text-align: center;
   }
 `;
 
@@ -271,8 +294,9 @@ function App() {
 
   return (
     <AppWrapperTile>
-      <div className="app ">
+      <div className="app">
         <form className="app_form" onSubmit={onSubmit}>
+        <div className="input_button_search">
           <input
             id="search"
             type="text"
@@ -280,20 +304,25 @@ function App() {
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
           />
-          <button className="app_submit" type="submit" value="Search">
+          <button 
+          className="app_submit" 
+          type="submit" value="Search">
             Search
           </button>
+        </div>
           <div className="buttons">
-            <select
-              className="selectValue"
-              onChange={change}
-              value={caloriesFilterValue}
-            >
-              <option value={1}>Calories</option>
-              <option value={2}>0To1000</option>
-              <option value={3}>1000To2000</option>
-              <option value={4}>2000Toend</option>
-            </select>
+            {inputValue && (
+              <select
+                className="selectValue"
+                onChange={change}
+                value={caloriesFilterValue}
+              >
+                <option value={1}>Calories</option>
+                <option value={2}>0To1000</option>
+                <option value={3}>1000To2000</option>
+                <option value={4}>2000Toend</option>
+              </select>
+            )}
             {visibleHeader ? (
               <div
                 onClick={() => {
@@ -306,53 +335,57 @@ function App() {
                 <span className="close-btn">&times;</span>
               </div>
             ) : null}
-            <select className="app_healthlable">
-              <option onClick={() => setHealthLables("Vegan")}>Vegan</option>
-              <option onClick={() => setHealthLables("Vegetarian")}>
-                Vegetarian
-              </option>
-              <option onClick={() => setHealthLables("Pescatarian")}>
-                Pescatarian
-              </option>
-              <option onClick={() => setHealthLables("Dairy-Free")}>
-                Dairy-Free
-              </option>
-              <option onClick={() => setHealthLables("Gluten-Free")}>
-                Gluten-Free
-              </option>
-              <option onClick={() => setHealthLables("Wheat-Free")}>
-                Wheat-Free
-              </option>
-              <option onClick={() => setHealthLables("Egg-Free")}>
-                Egg-Free
-              </option>
-              <option onClick={() => setHealthLables("Peanut-Free")}>
-                Peanut-Free
-              </option>
-              <option onClick={() => setHealthLables("Tree-Nut-Free")}>
-                Tree-Nut-Free
-              </option>
-              <option onClick={() => setHealthLables("Soy-Free")}>
-                Soy-Free
-              </option>
-              <option onClick={() => setHealthLables("Fish-Free")}>
-                Fish-Free
-              </option>
-              <option onClick={() => setHealthLables("Shellfish-Free")}>
-                Shellfish-Free
-              </option>
-            </select>
+            {inputValue && (
+              <select className="app_healthlable">
+                <option onClick={() => setHealthLables("Vegan")}>Vegan</option>
+                <option onClick={() => setHealthLables("Vegetarian")}>
+                  Vegetarian
+                </option>
+                <option onClick={() => setHealthLables("Pescatarian")}>
+                  Pescatarian
+                </option>
+                <option onClick={() => setHealthLables("Dairy-Free")}>
+                  Dairy-Free
+                </option>
+                <option onClick={() => setHealthLables("Gluten-Free")}>
+                  Gluten-Free
+                </option>
+                <option onClick={() => setHealthLables("Wheat-Free")}>
+                  Wheat-Free
+                </option>
+                <option onClick={() => setHealthLables("Egg-Free")}>
+                  Egg-Free
+                </option>
+                <option onClick={() => setHealthLables("Peanut-Free")}>
+                  Peanut-Free
+                </option>
+                <option onClick={() => setHealthLables("Tree-Nut-Free")}>
+                  Tree-Nut-Free
+                </option>
+                <option onClick={() => setHealthLables("Soy-Free")}>
+                  Soy-Free
+                </option>
+                <option onClick={() => setHealthLables("Fish-Free")}>
+                  Fish-Free
+                </option>
+                <option onClick={() => setHealthLables("Shellfish-Free")}>
+                  Shellfish-Free
+                </option>
+              </select>
+            )}
           </div>
-          <div className="app_icon "></div>
         </form>
-
+        <div className="search_food">
+          {inputValue ? null : <SearchBackground className="noresult_icon" />}
+          {inputValue ? null : (
+            <p className="app_refresh_p">
+              Please find some other food recipes you like
+            </p>
+          )}
+        </div>
         <div className="recipe_app">
           {isLoading ? (
             <SkeletonArticle />
-          ) : !inputValue ? (
-            <p className="app-refresh">
-              Please find some other food recipes you like
-            </p>
           ) : (
             recipes
               .filter((recipe_) => {

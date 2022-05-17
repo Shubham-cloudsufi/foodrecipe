@@ -21,6 +21,7 @@ const Path = () => {
     console.log(local);
   }, [local]);
 
+  
 
   const handleLogin = ({ name, age, gender, Password , email }) => {
     
