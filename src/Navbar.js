@@ -6,6 +6,8 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 const NavWrapperTile = styled("div")`
   .navbar {
     position: fixed;
+    display: flex;
+    justify-content: space-between;
     top: 0;
     width: 100%;
     background-color: white;
@@ -86,12 +88,12 @@ const NavWrapperTile = styled("div")`
     right: 91px;
   }
   .app_icon {
-    float: right;
-    display: flex;
-    align-items: center;
-    margin: -3.3rem 0.5rem 2rem 0;
-    text-align: center;
-    border: 1px solid white;
+    /* float: right; */
+    /* display: flex; */
+    /* align-items: center; */
+    margin: -3.2rem 0.5rem 2rem 0;
+    /* text-align: center; */
+    /* border: 1px solid white; */
   }
   .select_app {
     margin: 83px 0 0 0;
@@ -146,9 +148,11 @@ const NavWrapperTile = styled("div")`
     text-decoration: none;
     border-color: white;
     border: 1px solid grey;
-    width: 4rem;
+    /* width: 4rem; */
     cursor: pointer;
-  }
+    padding: 0.1rem rem 0.4rem;
+    /* background-color: yellow; */
+    }
   .image_dropdown {
     border-radius: 50%;
     width: 3rem;
@@ -182,7 +186,7 @@ function Navbar({ setAuthenticate }) {
     // logoutx();
     localStorage.clear();
     setAuthenticate(false);
-    setActive(false)
+    setActive(false);
     // navigate("/auth");
     console.log("loging out now");
     // localStorage.getItem("login", false);
