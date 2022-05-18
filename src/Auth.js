@@ -9,8 +9,11 @@ const NavWrapperTile = styled("div")`
     text-align: center;
     justify-content: center;
     background-color: #e3ceb9;
-    margin: 5% 8% 5% 8%;
+    /* margin: 5% 8% 5% 8%; */
+    /* margin: 4rem 4rem; */
     font-weight: 400;
+    height: 30rem;
+    margin-top: 5rem;
   }
   .user {
     padding: 15px;
@@ -60,7 +63,7 @@ const NavWrapperTile = styled("div")`
     }
   }
   .input_data {
-    margin: 10% 0 0 5%;
+    margin:6rem 0 0 0;
   }
   @media screen and (max-width: 1000px) {
     /* .header {

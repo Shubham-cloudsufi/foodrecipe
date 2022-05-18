@@ -30,22 +30,22 @@ const NavWrapperTile = styled("div")`
 
   .link {
     text-decoration: none;
-    color: grey;
+    color: #6c63ff;
   }
 
   .food_icon {
     width: 3.25rem;
-    height: 3.25rem;
+    /* height: 3.25rem; */
     bottom: 0.3rem;
-    margin: -0.4rem 0 0 0.5rem;
+    margin: -0.4rem 1rem 0 1rem;
     .food_logo_first {
       fill: grey;
     }
     .food_logo_second {
-      fill: #e3ceb9;
+      fill: #6c63ff;
     }
     .food_logo_third {
-      fill: pink;
+      fill: red;
     }
     .food_logo_fourth {
       fill: red;
@@ -61,11 +61,10 @@ const NavWrapperTile = styled("div")`
   .nav_button {
     padding: 8px 10px;
     font-weight: 400;
-    margin: 4rem 0rem 0rem 0;
+    margin: 1rem 1rem 0rem 0;
   }
   .logout {
     font-weight: 100;
-    /* max-width: 4.3rem; */
     height: 3rem;
     top: 0.4rem;
     float: right;
@@ -87,14 +86,6 @@ const NavWrapperTile = styled("div")`
     top: 10px;
     right: 91px;
   }
-  .app_icon {
-    /* float: right; */
-    /* display: flex; */
-    /* align-items: center; */
-    margin: -3.2rem 0.5rem 2rem 0;
-    /* text-align: center; */
-    /* border: 1px solid white; */
-  }
   .select_app {
     margin: 83px 0 0 0;
   }
@@ -108,7 +99,6 @@ const NavWrapperTile = styled("div")`
     .food_icon img {
       width: 3rem;
       height: 3rem;
-      /* right: 26.5%; */
     }
     .logout {
       right: 3%;
@@ -119,44 +109,29 @@ const NavWrapperTile = styled("div")`
       margin: 0.2rem 0 0 0rem;
     }
   }
-  /* @media screen and (max-width: 1000px) {
-  .head {
-    margin: 0.25rem 0 0 0;
-  }
-  .food_icon img {
-    width: 3rem;
-    height: 3rem;
-    right: 13%;
-  }
-  .logout {
-    right: 1%;
-  }
-  .profile_icon img {
-    right: 20%;
-  }
-  } */
+
   .dropdown {
     cursor: pointer;
     background-color: white;
   }
   .dropdown_btn {
     padding: 0 0 0 0;
-    margin: 55px 0 0 0;
+    margin: 2px 0 0 0;
   }
   .dropdown_item {
-    padding: 0 0 0 0;
-    text-decoration: none;
-    border-color: white;
-    border: 1px solid grey;
-    /* width: 4rem; */
-    cursor: pointer;
-    padding: 0.1rem rem 0.4rem;
-    /* background-color: yellow; */
-    }
+    text-align: center;
+    padding: 0.3rem 0rem ;
+  }
+  .dropdown_item:hover {
+    border: 1px solid white;
+    background-color: #6c63ff;
+  }
+
   .image_dropdown {
     border-radius: 50%;
-    width: 3rem;
-    height: 3rem;
+    width: 3.1rem;
+    height: 3.1rem;
+    padding: 0 1rem;
   }
   .dropdown_now {
     padding: 0 0 0 0;
@@ -233,7 +208,7 @@ function Navbar({ setAuthenticate }) {
                   className="image_dropdown"
                   src="https://avatars.githubusercontent.com/u/78645691?s=96&v=4"
                 />
-                <span className="fas fa-caret-down"></span>
+                {/* <span className="fas fa-caret-down"></span> */}
               </div>
               {isActive && (
                 <div className="dropdown_now">

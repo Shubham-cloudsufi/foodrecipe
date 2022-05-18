@@ -39,7 +39,7 @@ const AppWrapperTile = styled("div")`
     outline: none;
   }
   #search {
-    border: 1px solid rgb(140,141,158);
+    border: 1px solid rgb(140, 141, 158);
     width: 25%;
     height: 2.3rem;
     border-radius: 0.5rem 0 0 0.5rem;
@@ -118,13 +118,13 @@ const AppWrapperTile = styled("div")`
     .noresult_icon_second {
       fill: red;
     }
-    .noresult_icon_third{
+    .noresult_icon_third {
       fill: orange;
     }
-    .noresult_icon_fourth{
+    .noresult_icon_fourth {
       fill: orange;
     }
-    .noresult_icon_fifth{
+    .noresult_icon_fifth {
       fill: white;
     }
   }
@@ -138,39 +138,15 @@ const AppWrapperTile = styled("div")`
     .buttons {
       justify-content: center;
     }
-    .app-refresh {
-      /* margin: 50% 0 0 65%; */
-      /* top: 112%;*/
-      /* top: 38.5%;  */
-    }
-    /* #search {
-      left: 25%;
-      width: 50%;
-    } */
-    /* .app_submit {
-      right: 20%;
-    } */
   }
   @media screen and (max-width: 500px) {
     .recipe_app {
       display: grid;
       grid-template-columns: 15rem;
     }
-    .app-refresh {
-      /* margin: 50% 0 0 -10%; */
-      /* top: 112%;*/
-      /* top: 25rem;  */
-      /* left:0.5rem; */
-    }
     #search {
       left: 10%;
       width: 70%;
-    }
-    /* .app_submit {
-      right: 10%;
-    } */
-    .search_food img {
-      /* margin: 0 0 0 6.5rem; */
     }
   }
 
@@ -228,7 +204,7 @@ const AppWrapperTile = styled("div")`
     height: 4.3rem;
     margin: 1rem 0 1% 1%;
   }
-  .input_button_search{
+  .input_button_search {
     margin-top: 1rem;
     display: flex;
     align-items: center;
@@ -246,6 +222,7 @@ function App() {
   const [visibleHeader, setVisibleHeader] = useState(false);
   const [headertext, setHeaderText] = useState("");
   const [healthLables, setHealthLables] = useState("vegan");
+  const [notEnable, setEnable] = useState("");
 
   var url = `https://api.edamam.com/search?q=${inputValue}&app_id=45918ea0&app_key=${process.env.REACT_APP_API}&from=0&to=40&calories=591-722&health=${healthLables}`;
 
@@ -273,7 +250,13 @@ function App() {
   const onSubmit = (e) => {
     e.preventDefault();
     getRecipes();
+    // alert(`please enter some value it's not ${notEnable} `)
   };
+
+  function entervalue(e) {
+    setInputValue(e.target.value);
+    setEnable(e.target.value);
+  }
 
   function change(e) {
     setCaloriesFilterValue(e.target.value);
@@ -296,20 +279,23 @@ function App() {
     <AppWrapperTile>
       <div className="app">
         <form className="app_form" onSubmit={onSubmit}>
-        <div className="input_button_search">
-          <input
-            id="search"
-            type="text"
-            placeholder="ENTER NAME"
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-          />
-          <button 
-          className="app_submit" 
-          type="submit" value="Search">
-            Search
-          </button>
-        </div>
+          <div className="input_button_search">
+            <input
+              id="search"
+              type="text"
+              placeholder="ENTER NAME"
+              value={inputValue}
+              onChange={entervalue}
+            />
+            <button
+              className="app_submit"
+              disabled={!notEnable}
+              type="submit"
+              value="Search"
+            >
+              Search
+            </button>
+          </div>
           <div className="buttons">
             {inputValue && (
               <select
@@ -386,7 +372,7 @@ function App() {
         <div className="recipe_app">
           {isLoading ? (
             <SkeletonArticle />
-          ) : (
+          ) : !inputValue ? null  : (
             recipes
               .filter((recipe_) => {
                 if (caloriesFilterValue == 1) {

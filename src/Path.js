@@ -10,6 +10,7 @@ import Navbar from "./Navbar";
 import Auth from "./Auth";
 import Profile from "./Profile";
 import ErrorPage from "./ErrorPage";
+import Footer from "./Footer";
 
 const Path = () => {
   
@@ -21,7 +22,7 @@ const Path = () => {
     console.log(local);
   }, [local]);
 
-  
+
 
   const handleLogin = ({ name, age, gender, Password , email }) => {
     
@@ -107,6 +108,7 @@ const Path = () => {
           />
           <Route exact path="*" element={<ErrorPage />} />
         </Routes>
+        {/* <Footer /> */}
       </Router>
     </div>
   );
