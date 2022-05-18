@@ -20,7 +20,6 @@ const RecipeWrapperTile = styled("div")`
     border-radius: 0.5rem 0.5rem 0px 0px;
     width: 20.5rem;
     height: 15rem;
-    /* margin-top: -1.2rem; */
     margin-left: 0;
     margin-top: auto;
   }
@@ -30,8 +29,7 @@ const RecipeWrapperTile = styled("div")`
   .recipe__box {
     width: 20.5rem;
     display: grid;
-    height: 21.5rem;
-    /* margin-left: 0.7rem; */
+    height: 23rem;
     box-shadow: rgba(51, 89, 128, 0.2) 0px 8px 24px;
   }
   .recipe__box:hover {
@@ -55,78 +53,64 @@ const RecipeWrapperTile = styled("div")`
   }
 
   .recipe_inline {
-    display: flex;
+    /* display: flex;
     justify-content: space-between;
-    width: 15.5rem;
+    width: 15.5rem; */
   }
 
   .recipe_dishtype {
-    padding: 0.4rem;
-    margin-left: 0.5rem;
+    display: flex;
+    justify-content: center;
     font-size: 1rem;
-    max-width: 6.5rem;
+    max-width: 5rem;
+    padding: 1rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     border-radius: 0.5rem;
     font-weight: 400;
-    text-transform: lowercase;
+    /* text-transform: lowercase; */
+    align-items: center;
     background: #3a913f;
     color: #ffffff;
   }
-  .recipe_dishtype::first-letter {
+  .recipe_dishtype::first-letter{
     text-transform: uppercase;
-    font-size: 1.1rem;
   }
+  
   p::first-letter {
     text-transform: uppercase;
     font-size: 1.1rem;
   }
 
   .recipe_url {
-    background-color: rgb(167,167,196);
-    color: black;
+    padding: 0.5rem 7rem;
+    margin-top: 1rem;
     display: flex;
-    position: absolute;
-    justify-content:center;
-    text-align: center;
-    border-radius: 0.1rem;
-    width: 20rem;
-    margin: 1.8rem 0 0 0;
-    background-color: rgb(180,167,238);
-    align-items: center;
-    height: 2rem;
-    font-family: "Gill Sans","Gill Sans MT",Calibri,"Trebuchet MS", sans-serif;
-    font-weight: 300;
+    background-color: #6c63ff;
+    color: white;
     text-decoration: none;
-    color: rgb(63,60,60);
-    padding-left: 0.59rem;
-    z-index: -1;
+  }
+  .recipe_calories{
+    padding: 0;
+    margin: 0;
   }
   .recipe_url:hover {
     background-color: rgb(61, 37, 133);
     transition: all 1s;
     color: white;
   }
-  .arrow {
-    margin-top: 0.7rem;
-  }
-  .arrow img {
-    z-index: -1;
-    position: absolute;
+  /* .arrow {
+    justify-content: end;
+    display: flex;
+    margin: -32px 11px 0px 0px;
+  } */
+  /* .arrow img {
     width: 1.5rem;
-    height: 1.2rem;
-    align-items: center;
-    text-align: center;
-    background-color: #fff;
-    margin-top: 1.1rem;
-    margin: 0.6rem 0rem 1.5rem 7.5rem;
-  }
+    height: 1.8rem; 
+  } */
   .app_arrow {
     margin-left: -1.2rem;
-  }
-  .recipe_inline {
-    display: flex;
   }
   .span__calories {
     font-size: 1.1rem;
@@ -137,8 +121,8 @@ const RecipeWrapperTile = styled("div")`
   }
   @media screen and (max-width: 1000px) {
     .recipe_url {
-    width: 20rem;
-    margin: 1.8rem 0 0 0;
+    /* width: 20rem;
+    margin: 1.8rem 0 0 0; */
   }
   }
 `;
@@ -150,7 +134,7 @@ const RecipeTile = ({ recipes }) => {
         <div className="recipe__box ">
           <img alt="img" className="recipe_img" src={recipes["recipe"]["image"]}></img>
           <p className="recipe_label">{recipes["recipe"]["label"]}</p>
-          <div className="recipe_dishtype ">{recipes["recipe"]["dishType"]} </div>
+          <div className="recipe_dishtype">{recipes["recipe"]["dishType"]} </div>
           <div className="recipe_inline">
             <p className="recipe_calories">
               <span className="span__calories">calories</span> 
@@ -160,16 +144,16 @@ const RecipeTile = ({ recipes }) => {
               type="text"
               rel="newpage"
               target="_blank"
-              className="recipe_url "
+              className="recipe_url"
               href={recipes["recipe"]["url"]}
             >
               LOOK RECIPE
             </a>
           </div>
           <div>
-            <span className="arrow ">
+            {/* <span className="arrow ">
               <img src={outside} alt="arrow" />
-            </span>
+            </span> */}
           </div>
         </div>
       </div>

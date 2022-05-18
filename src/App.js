@@ -39,12 +39,16 @@ const AppWrapperTile = styled("div")`
     outline: none;
   }
   #search {
-    border: 1px solid rgb(140, 141, 158);
+    border: 1px solid #0a0bdb;
     width: 25%;
     height: 2.3rem;
     border-radius: 0.5rem 0 0 0.5rem;
     padding-left: 1rem;
+    margin: -4px;
   }
+  /* input:enabled{
+    color: aqua;
+  } */
   .cal {
     font-weight: 100;
     background-color: white;
@@ -89,6 +93,15 @@ const AppWrapperTile = styled("div")`
     background-color: rgb(22, 22, 240);
     transition: all 0.5s;
   }
+
+  .app_submit:disabled{
+    background-color: grey;
+  }
+
+  .app_submit:enabled{
+    background-color: #6c63ff;
+  }
+
   .app_refresh {
     display: flex;
     width: 25rem;
