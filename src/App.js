@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import RecipeTile from "./RecipeTile";
 import axios from "axios";
 import { ReactComponent as SearchBackground } from "./Icons/NoResultIcon.svg";
 import SkeletonArticle from "./SkeletonArticle";
+import { ButtonProps } from "./ButtonProps";
+import { debounce } from "lodash";
 
 const AppWrapperTile = styled("div")`
   .app {
@@ -11,7 +13,7 @@ const AppWrapperTile = styled("div")`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 8.8rem;
+    margin-top: 2.8rem;
     margin-right: 6rem;
     margin-bottom: 6.2rem;
     box-sizing: border-box;
@@ -27,28 +29,44 @@ const AppWrapperTile = styled("div")`
     display: grid;
     grid-template-columns: 15rem 15rem 15rem;
     grid-gap: 1.8rem 7.2rem;
+    overflow: scroll;
+  }
+
+  ::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+    height: 10px;
+  }
+
+  .scroll {
+    margin-left: 10rem;
+    width: 70rem;
+    height: 60rem;
+    overflow: scroll;
+    overflow-x: scroll;
+    /* overflow-y: auto; */
+    text-align: justify;
   }
   .app_form {
-    background-color: rgb(255, 255, 255);
+    background-color: var(--main-bg-color);
     margin: 0 auto;
     width: 100%;
     position: fixed;
-    height: 8.7rem;
+
+    height: 5rem;
     right: 0rem;
     top: 57px;
     outline: none;
   }
   #search {
-    border: 1px solid #0a0bdb;
-    width: 25%;
+    outline: none;
+    border: 1px solid #54b248;
+    /* width: 60%; */
     height: 2.3rem;
+    border-right: none;
     border-radius: 0.5rem 0 0 0.5rem;
     padding-left: 1rem;
-    margin: -4px;
   }
-  /* input:enabled{
-    color: aqua;
-  } */
   .cal {
     font-weight: 100;
     background-color: white;
@@ -79,27 +97,29 @@ const AppWrapperTile = styled("div")`
   }
   .app_submit {
     border: inherit;
-    background-color: #6c63ff;
+    background-color: var(--main-button-color);
     color: white;
-    display: flex;
+    /* display: flex; */
     width: 5.2rem;
     height: 2.45rem;
     border-radius: 0px 0.4rem 0.4rem 0;
     cursor: pointer;
     justify-content: center;
     align-items: center;
+    /* transform: translateX(-35px);
+    transition: all 2s ease-out; */
   }
   .app_submit:hover {
-    background-color: rgb(22, 22, 240);
+    background-color: var(--main-buttonhover-color);
     transition: all 0.5s;
   }
 
-  .app_submit:disabled{
-    background-color: grey;
+  .app_submit:disabled {
+    opacity: 0.5;
   }
 
-  .app_submit:enabled{
-    background-color: #6c63ff;
+  .app_submit:enabled {
+    background-color: var(--main-buttonhover-color);
   }
 
   .app_refresh {
@@ -124,6 +144,7 @@ const AppWrapperTile = styled("div")`
     width: 20rem;
     height: 10rem;
     margin: 0rem 0 0 6rem;
+    margin-top: 5.8rem;
     right: 0;
     .noresult_icon_first {
       fill: yellow;
@@ -151,6 +172,10 @@ const AppWrapperTile = styled("div")`
     .buttons {
       justify-content: center;
     }
+    .scroll {
+    width: 45rem;
+    margin-left: 7rem;
+  }
   }
   @media screen and (max-width: 500px) {
     .recipe_app {
@@ -204,6 +229,7 @@ const AppWrapperTile = styled("div")`
     width: 5rem;
     margin-right: 1rem;
   }
+
   .app_healthlable {
     width: 5rem;
     border: 1px solid rgb(62, 62, 82);
@@ -214,16 +240,22 @@ const AppWrapperTile = styled("div")`
     display: flex;
     justify-content: center;
     top: 1rem;
-    height: 4.3rem;
-    margin: 1rem 0 1% 1%;
+
+    margin: 0rem 0 0 1rem;
   }
+
   .input_button_search {
     margin-top: 1rem;
     display: flex;
     align-items: center;
-    height: auto;
+
+    /* height: auto; */
     justify-content: center;
     text-align: center;
+  }
+
+  .input_trans {
+    display: flex;
   }
 `;
 
@@ -237,7 +269,7 @@ function App() {
   const [healthLables, setHealthLables] = useState("vegan");
   const [notEnable, setEnable] = useState("");
 
-  var url = `https://api.edamam.com/search?q=${inputValue}&app_id=45918ea0&app_key=${process.env.REACT_APP_API}&from=0&to=40&calories=591-722&health=${healthLables}`;
+  var url = `https://api.edamam.com/search?q=${inputValue}&app_id=45918ea0&app_key=${process.env.REACT_APP_API}&from=0&to=20&calories=591-722&health=${healthLables}`;
 
   useEffect(() => {
     console.log("iside app");
@@ -263,13 +295,41 @@ function App() {
   const onSubmit = (e) => {
     e.preventDefault();
     getRecipes();
-    // alert(`please enter some value it's not ${notEnable} `)
   };
+  // const debounce = function (fn, d) {
+  //   // let timer;
+  //   return function () {
+  //     let context = this,
+  //       args = arguments;
+  //     clearTimeout(timer);
+  //     let timer = setTimeout(() => {
+  //       fn.apply(context, args);
+  //     }, d);
+  //   };
+  // };
 
-  function entervalue(e) {
+  const deb = useCallback(
+    debounce((text) => setInputValue(text), 3000),
+    []
+  );
+
+  // const handleInput = debounce((text) => {
+  //   setInputValue(text);
+  // }, 1000);
+
+  //   const handleText = (text) =>{
+  //     deb();
+  //     console.log("text",text)
+  // }
+
+  const enterValue = (e) => {
     setInputValue(e.target.value);
     setEnable(e.target.value);
-  }
+  };
+
+  useEffect(() => {
+    getRecipes();
+  }, [inputValue]);
 
   function change(e) {
     setCaloriesFilterValue(e.target.value);
@@ -293,85 +353,91 @@ function App() {
       <div className="app">
         <form className="app_form" onSubmit={onSubmit}>
           <div className="input_button_search">
-            <input
-              id="search"
-              type="text"
-              placeholder="ENTER NAME"
-              value={inputValue}
-              onChange={entervalue}
-            />
-            <button
-              className="app_submit"
-              disabled={!notEnable}
-              type="submit"
-              value="Search"
-            >
-              Search
-            </button>
-          </div>
-          <div className="buttons">
-            {inputValue && (
-              <select
-                className="selectValue"
-                onChange={change}
-                value={caloriesFilterValue}
+            <div className="input_trans">
+              <input
+                id="search"
+                type="text"
+                className="input_search"
+                placeholder="ENTER NAME"
+                // value={inputValue}
+                onChange={enterValue}
+              />
+              <button
+                className="app_submit"
+                disabled={!notEnable}
+                type="submit"
+                value="Search"
               >
-                <option value={1}>Calories</option>
-                <option value={2}>0To1000</option>
-                <option value={3}>1000To2000</option>
-                <option value={4}>2000Toend</option>
-              </select>
-            )}
-            {visibleHeader ? (
-              <div
-                onClick={() => {
-                  setVisibleHeader(false);
-                  setCaloriesFilterValue(5);
-                }}
-                className="cal"
-              >
-                {headertext}
-                <span className="close-btn">&times;</span>
-              </div>
-            ) : null}
-            {inputValue && (
-              <select className="app_healthlable">
-                <option onClick={() => setHealthLables("Vegan")}>Vegan</option>
-                <option onClick={() => setHealthLables("Vegetarian")}>
-                  Vegetarian
-                </option>
-                <option onClick={() => setHealthLables("Pescatarian")}>
-                  Pescatarian
-                </option>
-                <option onClick={() => setHealthLables("Dairy-Free")}>
-                  Dairy-Free
-                </option>
-                <option onClick={() => setHealthLables("Gluten-Free")}>
-                  Gluten-Free
-                </option>
-                <option onClick={() => setHealthLables("Wheat-Free")}>
-                  Wheat-Free
-                </option>
-                <option onClick={() => setHealthLables("Egg-Free")}>
-                  Egg-Free
-                </option>
-                <option onClick={() => setHealthLables("Peanut-Free")}>
-                  Peanut-Free
-                </option>
-                <option onClick={() => setHealthLables("Tree-Nut-Free")}>
-                  Tree-Nut-Free
-                </option>
-                <option onClick={() => setHealthLables("Soy-Free")}>
-                  Soy-Free
-                </option>
-                <option onClick={() => setHealthLables("Fish-Free")}>
-                  Fish-Free
-                </option>
-                <option onClick={() => setHealthLables("Shellfish-Free")}>
-                  Shellfish-Free
-                </option>
-              </select>
-            )}
+                Search
+              </button>
+            </div>
+            <div className="buttons">
+              {inputValue && (
+                <select
+                  className="selectValue"
+                  onChange={change}
+                  value={caloriesFilterValue}
+                >
+                  <option value={1}>Calories</option>
+                  <option value={2}>0To1000</option>
+                  <option value={3}>1000To2000</option>
+                  <option value={4}>2000Toend</option>
+                </select>
+              )}
+
+              {visibleHeader ? (
+                <div
+                  onClick={() => {
+                    setVisibleHeader(false);
+                    setCaloriesFilterValue(5);
+                  }}
+                  className="cal"
+                >
+                  {headertext}
+                  <span className="close-btn">&times;</span>
+                </div>
+              ) : null}
+              {inputValue && (
+                <select className="app_healthlable">
+                  <option onClick={() => setHealthLables("Vegan")}>
+                    Vegan
+                  </option>
+                  <option onClick={() => setHealthLables("Vegetarian")}>
+                    Vegetarian
+                  </option>
+                  <option onClick={() => setHealthLables("Pescatarian")}>
+                    Pescatarian
+                  </option>
+                  <option onClick={() => setHealthLables("Dairy-Free")}>
+                    Dairy-Free
+                  </option>
+                  <option onClick={() => setHealthLables("Gluten-Free")}>
+                    Gluten-Free
+                  </option>
+                  <option onClick={() => setHealthLables("Wheat-Free")}>
+                    Wheat-Free
+                  </option>
+                  <option onClick={() => setHealthLables("Egg-Free")}>
+                    Egg-Free
+                  </option>
+                  <option onClick={() => setHealthLables("Peanut-Free")}>
+                    Peanut-Free
+                  </option>
+                  <option onClick={() => setHealthLables("Tree-Nut-Free")}>
+                    Tree-Nut-Free
+                  </option>
+                  <option onClick={() => setHealthLables("Soy-Free")}>
+                    Soy-Free
+                  </option>
+                  <option onClick={() => setHealthLables("Fish-Free")}>
+                    Fish-Free
+                  </option>
+                  <option onClick={() => setHealthLables("Shellfish-Free")}>
+                    Shellfish-Free
+                  </option>
+                </select>
+              )}
+            </div>
           </div>
         </form>
         <div className="search_food">
@@ -382,10 +448,10 @@ function App() {
             </p>
           )}
         </div>
-        <div className="recipe_app">
+        <div className="recipe_app scroll">
           {isLoading ? (
             <SkeletonArticle />
-          ) : !inputValue ? null  : (
+          ) : !inputValue ? null : (
             recipes
               .filter((recipe_) => {
                 if (caloriesFilterValue == 1) {

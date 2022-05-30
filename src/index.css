@@ -14,10 +14,44 @@ body {
 html {
   font-size: 16px;
 }
-
-
+:root{
+  --main-bg-color: rgb(255, 255, 255);
+  --main-text-color:black;
+  --main-button-color:rgb(7, 54, 7);
+  --main-buttonhover-color:rgb(9, 135, 9);
+  }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+body{
+  overflow: scroll;
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0,0,0,.5);
+  /* -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5); */
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+}
+
+/* html::-webkit-scrollbar{
+  width: 10px;
+}
+
+html::-webkit-scrollbar-thumb{
+ background-color:red;
+}
+
+html::-webkit-scrollbar-track{
+  background-color: green;
+} */

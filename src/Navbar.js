@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { ReactComponent as FoodBackGround } from "./Icons/FoodLogo.svg";
 import { Link, useNavigate, useLocation } from "react-router-dom";
@@ -30,7 +30,8 @@ const NavWrapperTile = styled("div")`
 
   .link {
     text-decoration: none;
-    color: #6c63ff;
+    box-shadow: rgb(0 0 0 / 10%) 0px 1px 2px 0px;
+    color: green;
   }
 
   .food_icon {
@@ -42,7 +43,7 @@ const NavWrapperTile = styled("div")`
       fill: grey;
     }
     .food_logo_second {
-      fill: #6c63ff;
+      fill: green;
     }
     .food_logo_third {
       fill: red;
@@ -120,7 +121,7 @@ const NavWrapperTile = styled("div")`
   }
   .dropdown_item {
     text-align: center;
-    padding: 0.3rem 0rem ;
+    padding: 0.3rem 0rem;
   }
   .dropdown_item:hover {
     border: 1px solid white;
@@ -129,9 +130,10 @@ const NavWrapperTile = styled("div")`
 
   .image_dropdown {
     border-radius: 50%;
-    width: 3.1rem;
-    height: 3.1rem;
+    width: 3rem;
+    height: 3rem;
     padding: 0 1rem;
+    margin-top: 2px;
   }
   .dropdown_now {
     padding: 0 0 0 0;
@@ -150,8 +152,39 @@ function Navbar({ setAuthenticate }) {
   // const [visible, setVisible] = useState(false);
   const [isActive, setActive] = useState(false);
   const location = useLocation();
-  // console.log("uselocation hook", location);
-  // console.log("logoutx",logoutx)
+
+  let navRef = useRef(null);
+
+
+  // const escFunction = useCallback((e) => {
+    // if (e.keyCode === 27) {
+    //   setActive(false)
+    //   console.log("esc pressed");
+    // }
+  // }, []);
+
+  useEffect(() => {
+    const handler = (e) => {
+      if (!navRef?.current?.contains(e.target)) {
+        setActive(false);
+        // console.log(e);
+      }
+    }
+      const handler2 = (e) =>{
+        if (e.keyCode === "Escape") {
+          setActive(false);
+          console.log("esc pressed");
+        }
+    };
+    document.addEventListener("mousedown", handler);
+
+    document.addEventListener("keydown", handler2,false);
+    
+    return () => {
+      document.removeEventListener("keydown", handler2 , false);
+      document.removeEventListener("mousedown", handler);
+    }
+  }, []);
 
   const navigate = useNavigate();
   function logout() {
@@ -199,7 +232,7 @@ function Navbar({ setAuthenticate }) {
             </button>
           ) : null}
           {location.pathname === "/app" ? (
-            <div className="dropdown">
+            <div ref={navRef} className="dropdown">
               <div
                 className="dropdown_btn"
                 onClick={() => setActive(!isActive)}

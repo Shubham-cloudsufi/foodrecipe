@@ -10,7 +10,7 @@ import Navbar from "./Navbar";
 import Auth from "./Auth";
 import Profile from "./Profile";
 import ErrorPage from "./ErrorPage";
-import Footer from "./Footer";
+// import Footer from "./Footer";
 
 const Path = () => {
   
@@ -61,7 +61,7 @@ const Path = () => {
               isAuthenticate ? (
                 <Navigate to="/app" />
               ) : (
-                <Auth handleLogin={handleLogin} />
+                <Auth  />
               )
             }
           />
@@ -90,7 +90,7 @@ const Path = () => {
             path="/app"
             element={
               isAuthenticate ? (
-                <App logoutx={() => setAuthenticate(false)} />
+                <App  logoutx={() => setAuthenticate(false)} />
               ) : (
                 <Navigate to="/auth" />
               )
