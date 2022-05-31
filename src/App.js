@@ -173,8 +173,8 @@ const AppWrapperTile = styled("div")`
       justify-content: center;
     }
     .scroll {
-    width: 45rem;
-    margin-left: 7rem;
+      width: 46rem;
+    margin-left: 6rem;
   }
   }
   @media screen and (max-width: 500px) {
@@ -186,6 +186,10 @@ const AppWrapperTile = styled("div")`
       left: 10%;
       width: 70%;
     }
+    .scroll {
+      width: 23rem;
+    margin-left: 7rem;
+  }
   }
 
   @media screen and (max-width: 1000px) {
@@ -195,6 +199,13 @@ const AppWrapperTile = styled("div")`
   }
 
   @media screen and (max-width: 500px) {
+    
+    /* .app_form{
+      display: flex;
+    } */
+    .input_button_search{
+      display: table-column;
+    }
     .recipe_app {
       display: grid;
       grid-template-columns: 240px;
@@ -248,8 +259,6 @@ const AppWrapperTile = styled("div")`
     margin-top: 1rem;
     display: flex;
     align-items: center;
-
-    /* height: auto; */
     justify-content: center;
     text-align: center;
   }
