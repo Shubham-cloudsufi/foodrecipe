@@ -4,8 +4,8 @@ import RecipeTile from "./RecipeTile";
 import axios from "axios";
 import { ReactComponent as SearchBackground } from "./Icons/NoResultIcon.svg";
 import SkeletonArticle from "./SkeletonArticle";
-import { ButtonProps } from "./ButtonProps";
 import { debounce } from "lodash";
+import ReactPaginate from "react-paginate";
 
 const AppWrapperTile = styled("div")`
   .app {
@@ -14,7 +14,7 @@ const AppWrapperTile = styled("div")`
     justify-content: center;
     align-items: center;
     margin-top: 2.8rem;
-    margin-right: 6rem;
+    /* margin-right: 6rem; */
     margin-bottom: 6.2rem;
     box-sizing: border-box;
   }
@@ -39,12 +39,12 @@ const AppWrapperTile = styled("div")`
   }
 
   .scroll {
-    margin-left: 10rem;
+    /* margin-left: 10rem; */
     width: 70rem;
     height: 60rem;
     overflow: scroll;
     overflow-x: scroll;
-    /* overflow-y: auto; */
+    overflow-y: auto;
     text-align: justify;
   }
   .app_form {
@@ -174,8 +174,8 @@ const AppWrapperTile = styled("div")`
     }
     .scroll {
       width: 46rem;
-    margin-left: 6rem;
-  }
+      /* margin-left: 6rem; */
+    }
   }
   @media screen and (max-width: 500px) {
     .recipe_app {
@@ -188,8 +188,8 @@ const AppWrapperTile = styled("div")`
     }
     .scroll {
       width: 23rem;
-    margin-left: 7rem;
-  }
+      margin-left: 7.5rem;
+    }
   }
 
   @media screen and (max-width: 1000px) {
@@ -199,11 +199,10 @@ const AppWrapperTile = styled("div")`
   }
 
   @media screen and (max-width: 500px) {
-    
     /* .app_form{
       display: flex;
     } */
-    .input_button_search{
+    .input_button_search {
       display: table-column;
     }
     .recipe_app {
@@ -266,9 +265,45 @@ const AppWrapperTile = styled("div")`
   .input_trans {
     display: flex;
   }
+  .pagination {
+    width: 100%;
+    height: 2rem;
+    background-color: green;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 20px;
+    list-style: none;
+    border: solid 1px lightgreen;
+    color: white;
+    margin-top: 5rem;
+  }
+  .page_item {
+    background-color: green;
+    color: white;
+  }
+  .page_link {
+    padding: 5px 25px;
+    background-color: firebrick;
+    border: solid 1px white;
+    border-radius: 5px;
+  }
+  .prev_item {
+    padding: 5px 25px;
+    background-color: red;
+    border: solid 1px lightgreen;
+    border-radius: 5px;
+  }
+  .next_item {
+    padding: 5px 25px;
+    background-color: red;
+    border: solid 1px lightgreen;
+    border-radius: 5px;
+  }
 `;
 
-function App() {
+function App({data, itemsPerPage}) {
   const [inputValue, setInputValue] = useState("");
   const [recipes, setrecipes] = useState([]);
   const [isLoading, setloading] = useState(false);
@@ -277,8 +312,9 @@ function App() {
   const [headertext, setHeaderText] = useState("");
   const [healthLables, setHealthLables] = useState("vegan");
   const [notEnable, setEnable] = useState("");
-
+  
   var url = `https://api.edamam.com/search?q=${inputValue}&app_id=45918ea0&app_key=${process.env.REACT_APP_API}&from=0&to=20&calories=591-722&health=${healthLables}`;
+
 
   useEffect(() => {
     console.log("iside app");
@@ -330,6 +366,10 @@ function App() {
   //     deb();
   //     console.log("text",text)
   // }
+
+  // const handlePageClicked = (data) => {
+  //   console.log(data.selected);
+  // };
 
   const enterValue = (e) => {
     setInputValue(e.target.value);
@@ -480,6 +520,20 @@ function App() {
               })
           )}
         </div>
+        <ReactPaginate
+          previousLabel={"previous"}
+          nextAriaLabel={"next"}
+          breakLabel={"..."}
+          pageCount={0}
+          marginPagesDisplayed={3}
+          pageRangeDisplayed={3}
+          // onPageChange={handlePageClicked}
+          containerClassName={"pagination"}
+          pageClassName={"page_item"}
+          pageLinkClassName={"page_link"}
+          previousClassName={"prev_item"}
+          nextClassName={"next_item"}
+        />
       </div>
     </AppWrapperTile>
   );

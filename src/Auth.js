@@ -28,7 +28,7 @@ const NavWrapperTile = styled("div")`
     outline: none;
     margin: 10px 0px;
     padding: 10px 10px;
-    width: 70%;
+    /* width: 70%; */
     border-radius: 5px;
     border:1px solid green;
   }
@@ -69,42 +69,43 @@ const NavWrapperTile = styled("div")`
   }
   .input_data {
     margin: 6rem 0 0 0;
+    display: flex;
+    flex-direction: column;
   }
 
   .radio_button {
-    display: flex;
-    align-items: center;
-    width: 74%;
-    justify-content: center;
-    margin: 10px 0 10px 12%;
-    /* height: 2.2rem; */
     background-color: white;
     border: 1px solid green;
+    margin: 8px 0;
     border-radius: 5px;
-    /* padding: 0 3px 0 0; */
-    padding: 7px 2px;
+    padding: 8px 10px 8px 9px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .radio_button_p{
-    margin: -12px 0px 0px -4.5rem;
+    /* margin: -12px 0px 0px -4.5rem; */
     color: grey;
   }
 
   .input_gender{
-    width: 27px;
+    width: 70px;
     padding: 0 0 0 0;
     margin: 0;
   }
 
   @media screen and (max-width: 700px) {
+    .login_img{
+      display: none;
+    }
     .radio_button {
-    margin: 0 0 0 1.5rem;
-    padding:  5px 0px 5px 11px;
+      padding: 7px 7px 7px 24px;
   }
   .radio_button_p{
-    margin: -12px 0px 0px -1.5rem;
+    /* margin: -12px 0px 0px -1.5rem; */
     color: grey;
-    width: 5rem;
+    /* width: 5rem; */
     padding: 0;
     margin: 0 0px 0 -14px;
   }
@@ -124,17 +125,10 @@ const Auth = ({ handleLogin }) => {
 
   console.log("iside auth");
 
-  const navigate = useNavigate();
-
   function onChangeValue(event) {
     setGender(event.target.value);
     console.log(event.target.value);
   }
-// const nameRef = useRef()
-//   const emailRef =useRef();
-//   const passwordRef =useRef();
-//   const genderRef=useRef()
-//   const ageRef =useRef();
 
   function onSubmit(e){
     // e.preventDefault();
@@ -166,7 +160,7 @@ const Auth = ({ handleLogin }) => {
           {/* <p>GENDER:</p> */}
           
             <div className="radio_button" onChange={onChangeValue}>
-            <p className="radio_button_p">Gender</p>
+            <span className="radio_button_p">Gender</span>
               <input
                 type="radio"
                 value="Male"
@@ -176,7 +170,7 @@ const Auth = ({ handleLogin }) => {
                 onChange={(e) => setGender(e.target.value)}
                 required
               />
-              Male
+              <span> Male</span>
               <input
                 type="radio"
                 value="Female"
@@ -186,9 +180,8 @@ const Auth = ({ handleLogin }) => {
                 onChange={(e) => setGender(e.target.value)}
                 required
               />
-              Female
+              <span> Female</span>
             </div>
-          
           <input
             type="email"
             placeholder="Email"

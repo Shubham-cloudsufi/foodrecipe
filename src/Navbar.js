@@ -30,7 +30,6 @@ const NavWrapperTile = styled("div")`
 
   .link {
     text-decoration: none;
-    box-shadow: rgb(0 0 0 / 10%) 0px 1px 2px 0px;
     color: green;
   }
 

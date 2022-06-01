@@ -120,7 +120,7 @@ const RecipeWrapperTile = styled("div")`
     color: rgb(139, 154, 70);
   }
   @media screen and (max-width: 500px) {
-    /* .recipe {
+    /* .recipe_url {
     margin-left: 22rem;
   } */
   }
