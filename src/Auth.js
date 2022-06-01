@@ -119,7 +119,7 @@ const NavWrapperTile = styled("div")`
 const Auth = ({ handleLogin }) => {
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
-  const [gender, setGender] = useState("");
+  const [gender, setGender] = useState();
   const [Password, setPassword] = useState("");
   const [email, setEmail] = useState("");
 
@@ -170,7 +170,7 @@ const Auth = ({ handleLogin }) => {
                 onChange={(e) => setGender(e.target.value)}
                 required
               />
-              <span> Male</span>
+              <span>Male</span>
               <input
                 type="radio"
                 value="Female"

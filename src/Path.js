@@ -61,7 +61,7 @@ const Path = () => {
               isAuthenticate ? (
                 <Navigate to="/app" />
               ) : (
-                <Auth  />
+                <Auth  handleLogin={handleLogin}/>
               )
             }
           />
