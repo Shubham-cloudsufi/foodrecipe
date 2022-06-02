@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { ReactComponent as FoodBackGround } from "./Icons/FoodLogo.svg";
 import { Link, useNavigate, useLocation } from "react-router-dom";
@@ -35,7 +35,6 @@ const NavWrapperTile = styled("div")`
 
   .food_icon {
     width: 3.25rem;
-    /* height: 3.25rem; */
     bottom: 0.3rem;
     margin: -0.4rem 1rem 0 1rem;
     .food_logo_first {
@@ -240,7 +239,7 @@ function Navbar({ setAuthenticate }) {
                   className="image_dropdown"
                   src="https://avatars.githubusercontent.com/u/78645691?s=96&v=4"
                 />
-                {/* <span className="fas fa-caret-down"></span> */}
+                
               </div>
               {isActive && (
                 <div className="dropdown_now">
@@ -257,19 +256,6 @@ function Navbar({ setAuthenticate }) {
             </div>
           ) : null}
         </div>
-        {/* {location.pathname === "/app" ? (
-            <button className="profile_icon icon">
-              <Link to="/Profile">
-                <img src="https://avatars.githubusercontent.com/u/78645691?s=96&v=4" />
-              </Link>
-            </button>
-          ) : null}  */}
-
-        {/* {location.pathname === "/app" ? (
-          <button className="logout icon" onClick={logoutnow}>
-            <h1>Logout</h1>
-          </button>
-        ) : null}  */}
       </div>
     </NavWrapperTile>
   );

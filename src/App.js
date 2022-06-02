@@ -5,8 +5,7 @@ import axios from "axios";
 import { ReactComponent as SearchBackground } from "./Icons/NoResultIcon.svg";
 import SkeletonArticle from "./SkeletonArticle";
 import { debounce } from "lodash";
-import ReactPaginate from "react-paginate";
-
+import Pagination from "./Pagination";
 const AppWrapperTile = styled("div")`
   .app {
     display: flex;
@@ -14,8 +13,7 @@ const AppWrapperTile = styled("div")`
     justify-content: center;
     align-items: center;
     margin-top: 2.8rem;
-    /* margin-right: 6rem; */
-    margin-bottom: 6.2rem;
+    margin-bottom: 1.5rem;
     box-sizing: border-box;
   }
   .header {
@@ -39,12 +37,13 @@ const AppWrapperTile = styled("div")`
   }
 
   .scroll {
-    /* margin-left: 10rem; */
+    /* background-color: green; */
+    color: green;
     width: 70rem;
-    height: 60rem;
+    height: 28rem;
     overflow: scroll;
-    overflow-x: scroll;
-    overflow-y: auto;
+    overflow-x: hidden;
+    /* overflow-y: auto; */
     text-align: justify;
   }
   .app_form {
@@ -52,7 +51,6 @@ const AppWrapperTile = styled("div")`
     margin: 0 auto;
     width: 100%;
     position: fixed;
-
     height: 5rem;
     right: 0rem;
     top: 57px;
@@ -99,15 +97,12 @@ const AppWrapperTile = styled("div")`
     border: inherit;
     background-color: var(--main-button-color);
     color: white;
-    /* display: flex; */
     width: 5.2rem;
     height: 2.45rem;
     border-radius: 0px 0.4rem 0.4rem 0;
     cursor: pointer;
     justify-content: center;
     align-items: center;
-    /* transform: translateX(-35px);
-    transition: all 2s ease-out; */
   }
   .app_submit:hover {
     background-color: var(--main-buttonhover-color);
@@ -174,7 +169,6 @@ const AppWrapperTile = styled("div")`
     }
     .scroll {
       width: 46rem;
-      /* margin-left: 6rem; */
     }
   }
   @media screen and (max-width: 500px) {
@@ -199,9 +193,6 @@ const AppWrapperTile = styled("div")`
   }
 
   @media screen and (max-width: 500px) {
-    /* .app_form{
-      display: flex;
-    } */
     .input_button_search {
       display: table-column;
     }
@@ -250,7 +241,6 @@ const AppWrapperTile = styled("div")`
     display: flex;
     justify-content: center;
     top: 1rem;
-
     margin: 0rem 0 0 1rem;
   }
 
@@ -303,7 +293,7 @@ const AppWrapperTile = styled("div")`
   }
 `;
 
-function App({data, itemsPerPage}) {
+function App() {
   const [inputValue, setInputValue] = useState("");
   const [recipes, setrecipes] = useState([]);
   const [isLoading, setloading] = useState(false);
@@ -312,15 +302,24 @@ function App({data, itemsPerPage}) {
   const [headertext, setHeaderText] = useState("");
   const [healthLables, setHealthLables] = useState("vegan");
   const [notEnable, setEnable] = useState("");
-  
-  var url = `https://api.edamam.com/search?q=${inputValue}&app_id=45918ea0&app_key=${process.env.REACT_APP_API}&from=0&to=20&calories=591-722&health=${healthLables}`;
+  const [showPerPage, setShowPerPage] = useState(9);
+  const [pagination, setPagination] = useState({
+    start: 0,
+    end: showPerPage,
+  });
 
+  var url = `https://api.edamam.com/search?q=${inputValue}&app_id=45918ea0&app_key=${process.env.REACT_APP_API}&from=0&to=99&calories=591-722&health=${healthLables}`;
 
   useEffect(() => {
     console.log("iside app");
   }, []);
 
   console.log("localstorage", localStorage.getItem("login"));
+
+  const onPagination = (start, end) => {
+    console.log(start, end);
+    setPagination({ start, end });
+  };
 
   function getRecipes() {
     setloading(true);
@@ -408,7 +407,7 @@ function App({data, itemsPerPage}) {
                 type="text"
                 className="input_search"
                 placeholder="ENTER NAME"
-                // value={inputValue}
+                value={inputValue}
                 onChange={enterValue}
               />
               <button
@@ -497,9 +496,9 @@ function App({data, itemsPerPage}) {
             </p>
           )}
         </div>
-        <div className="recipe_app scroll">
+        {inputValue ? <div className="recipe_app scroll">
           {isLoading ? (
-            <SkeletonArticle />
+            <SkeletonArticle  />
           ) : !inputValue ? null : (
             recipes
               .filter((recipe_) => {
@@ -515,25 +514,19 @@ function App({data, itemsPerPage}) {
                   return true;
                 }
               })
+              .slice(pagination.start, pagination.end)
               .map((recipes, key) => {
                 return <RecipeTile recipes={recipes} key={key} />;
               })
           )}
-        </div>
-        <ReactPaginate
-          previousLabel={"previous"}
-          nextAriaLabel={"next"}
-          breakLabel={"..."}
-          pageCount={0}
-          marginPagesDisplayed={3}
-          pageRangeDisplayed={3}
-          // onPageChange={handlePageClicked}
-          containerClassName={"pagination"}
-          pageClassName={"page_item"}
-          pageLinkClassName={"page_link"}
-          previousClassName={"prev_item"}
-          nextClassName={"next_item"}
-        />
+        </div> : null}
+        {inputValue ? (
+          <Pagination
+            showPerPage={showPerPage}
+            onPagination={onPagination}
+            total={recipes.length}
+          />
+        ) : null}
       </div>
     </AppWrapperTile>
   );

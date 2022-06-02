@@ -31,15 +31,15 @@ code {
 } */
 
 /* ::-webkit-scrollbar {
-  -webkit-appearance: none;
+  -webkit-appearance: grey;
   width: 7px;
   height: 5px;
 } */
 /* ::-webkit-scrollbar-thumb {
   border-radius: 4px;
   background-color: rgba(0,0,0,.5);
-}
-::-webkit-scrollbar-button {
+} */
+/* ::-webkit-scrollbar-button {
   -webkit-appearance: none;
   background-color: yellow;
   width: 7px;
