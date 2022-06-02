@@ -9,7 +9,7 @@ const PaginateWrapperTile = styled("div")`
     justify-content: center;
   }
   .previous {
-    padding: 10px 20px;
+    padding: 10px 1rem;
     margin: 5px;
     color: white;
     border: none;
@@ -18,7 +18,7 @@ const PaginateWrapperTile = styled("div")`
     border-radius: 5px;
   }
   .next {
-    padding:10px 20px;
+    padding:10px 1rem;
     margin: 5px;
     color: white;
     border: none;
@@ -34,7 +34,7 @@ const PaginateWrapperTile = styled("div")`
 
   @media screen and (max-width: 500px) {
     .buttons_pagination{
-      margin-left: 10%;
+      margin-left: 7rem;
     }
   }
 `;
