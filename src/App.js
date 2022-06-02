@@ -182,7 +182,7 @@ const AppWrapperTile = styled("div")`
     }
     .scroll {
       width: 23rem;
-      height: 28rem;
+      height: 32rem;
       margin-left: 7.5rem;
     }
   }
