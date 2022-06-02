@@ -13,7 +13,7 @@ const AppWrapperTile = styled("div")`
     justify-content: center;
     align-items: center;
     margin-top: 2.8rem;
-    margin-bottom: 1.5rem;
+    /* margin-bottom: 1.5rem; */
     box-sizing: border-box;
   }
   .header {
