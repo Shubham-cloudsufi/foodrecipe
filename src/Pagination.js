@@ -35,7 +35,8 @@ const PaginateWrapperTile = styled("div")`
 
   @media screen and (max-width: 500px) {
     .buttons_pagination{
-      margin-left: 7rem;
+      margin-left: 7.1rem;
+
     }
   }
 `;
