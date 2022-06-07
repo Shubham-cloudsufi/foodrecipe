@@ -1,21 +1,21 @@
 {
   "files": {
     "main.css": "/foodrecipe/static/css/main.e8fdfa76.css",
-    "main.js": "/foodrecipe/static/js/main.9c83058f.js",
+    "main.js": "/foodrecipe/static/js/main.756802fa.js",
     "static/media/PageNotFound.svg": "/foodrecipe/static/media/PageNotFound.bdf1c60c297dc6528f56fe6a382dacdf.svg",
     "static/media/NoResultIcon.svg": "/foodrecipe/static/media/NoResultIcon.d63a6c3c6e2ad9635ea2618f8da3eca0.svg",
     "static/media/Login.svg": "/foodrecipe/static/media/Login.ebac6fca26ca112abfd79c7ae01b5c07.svg",
     "static/media/FoodLogo.svg": "/foodrecipe/static/media/FoodLogo.51891f7e4ab6f80cee3250ae80ad81b3.svg",
-    "static/media/Gmail.svg": "/foodrecipe/static/media/Gmail.943511724fd94900269243b15ad6ad6d.svg",
     "index.html": "/foodrecipe/index.html",
+    "static/media/Gmail.svg": "/foodrecipe/static/media/Gmail.943511724fd94900269243b15ad6ad6d.svg",
     "static/media/Age.svg": "/foodrecipe/static/media/Age.720abf9bc59c0a146700909bb15e80c6.svg",
     "static/media/Gender.svg": "/foodrecipe/static/media/Gender.955b17976f8161740eccd93745752457.svg",
     "static/media/LinkToRecipe.svg": "/foodrecipe/static/media/LinkToRecipe.98b6a415827d6422a84d197da0123c8d.svg",
     "main.e8fdfa76.css.map": "/foodrecipe/static/css/main.e8fdfa76.css.map",
-    "main.9c83058f.js.map": "/foodrecipe/static/js/main.9c83058f.js.map"
+    "main.756802fa.js.map": "/foodrecipe/static/js/main.756802fa.js.map"
   },
   "entrypoints": [
     "static/css/main.e8fdfa76.css",
-    "static/js/main.9c83058f.js"
+    "static/js/main.756802fa.js"
   ]
 }
