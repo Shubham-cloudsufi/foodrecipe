@@ -52,7 +52,7 @@ const Path = () => {
 
   return (
     <div>
-      <Router>
+      <Router basename="/foodrecipe">
         <Navbar setAuthenticate={setAuthenticate} />
         <Routes>
           <Route

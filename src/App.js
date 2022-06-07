@@ -302,7 +302,7 @@ function App() {
   const [from , setFrom] =useState(0)
   const [to , setTo] = useState(9)
 
-  var url = `https://api.edamam.com/search?q=${inputValue}&app_id=45918ea0&app_key=${process.env.REACT_APP_API}&from=${from}&to=${to}&calories=591-722&health=${healthLables}`;
+  var url = `http://api.edamam.com/search?q=${inputValue}&app_id=45918ea0&app_key=${process.env.REACT_APP_API}&from=${from}&to=${to}&calories=591-722&health=${healthLables}`;
 
   useEffect(() => {
     if(inputValue){
@@ -369,7 +369,7 @@ function App() {
   // };
   
   const scrollToTop = () => {
-    document.getElementById("scroller").scroll({top : 0,behavior:"smooth"})
+    document.getElementById("scrollTop").scroll({top : 0,behavior:"smooth"})
   };
 
   const enterValue = (e) => {
@@ -495,7 +495,7 @@ function App() {
             </p>
           )}
         </div>
-        {inputValue ? <div id="scroller" className="recipe_app scroll">
+        {inputValue ? <div id="scrollTop" className="recipe_app scroll">
           {isLoading ? (
             <SkeletonArticle  />
           ) : !inputValue ? null : (
