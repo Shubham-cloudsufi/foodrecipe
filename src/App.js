@@ -302,7 +302,7 @@ function App() {
   const [from , setFrom] =useState(0)
   const [to , setTo] = useState(9)
 
-  var url = `http://api.edamam.com/search?q=${inputValue}&app_id=45918ea0&app_key=${process.env.REACT_APP_API}&from=${from}&to=${to}&calories=591-722&health=${healthLables}`;
+  var url = `https://api.edamam.com/search?q=${inputValue}&app_id=45918ea0&app_key=${process.env.REACT_APP_API}&from=${from}&to=${to}&calories=591-722&health=${healthLables}`;
 
   useEffect(() => {
     if(inputValue){
