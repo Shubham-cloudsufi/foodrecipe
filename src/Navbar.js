@@ -122,7 +122,7 @@ const NavWrapperTile = styled("div")`
     padding: 0.3rem 0rem;
   }
   .dropdown_item:hover {
-    border: 1px solid white;
+    /* border: 1px solid white; */
     background-color: #6c63ff;
   }
 
@@ -135,6 +135,7 @@ const NavWrapperTile = styled("div")`
   }
   .dropdown_now {
     padding: 0 0 0 0;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
   }
   .dropdown_link {
     text-decoration: none;
@@ -144,6 +145,12 @@ const NavWrapperTile = styled("div")`
   .fas .fa-caret-down {
     background-color: yellow;
   }
+
+  .app_icon{
+    /* width: 10rem; */
+    /* height: 5rem; */
+  }
+
 `;
 
 function Navbar({ setAuthenticate }) {

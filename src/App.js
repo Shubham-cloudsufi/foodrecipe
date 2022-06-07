@@ -27,23 +27,13 @@ const AppWrapperTile = styled("div")`
     display: grid;
     grid-template-columns: 15rem 15rem 15rem;
     grid-gap: 1.8rem 7.2rem;
-    overflow: scroll;
   }
 
-  ::-webkit-scrollbar {
-    -webkit-appearance: none;
-    width: 7px;
-    height: 10px;
-  }
 
   .scroll {
-    /* background-color: green; */
-    color: green;
     width: 70rem;
     height: 28rem;
-    overflow: scroll;
     overflow-x: hidden;
-    /* overflow-y: auto; */
     text-align: justify;
   }
   .app_form {
@@ -127,7 +117,7 @@ const AppWrapperTile = styled("div")`
 
   .app_refresh_p {
     margin-top: 0rem;
-    margin-left: 3rem;
+    /* margin-left: 3rem; */
     width: 100%;
   }
 
@@ -138,7 +128,7 @@ const AppWrapperTile = styled("div")`
   .noresult_icon {
     width: 20rem;
     height: 10rem;
-    margin: 0rem 0 0 6rem;
+    margin: 0rem 0 0 0rem;
     margin-top: 5.8rem;
     right: 0;
     .noresult_icon_first {
@@ -309,13 +299,20 @@ function App() {
     end: showPerPage,
   });
 
-  var url = `https://api.edamam.com/search?q=${inputValue}&app_id=45918ea0&app_key=${process.env.REACT_APP_API}&from=0&to=99&calories=591-722&health=${healthLables}`;
+  const [from , setFrom] =useState(0)
+  const [to , setTo] = useState(9)
+
+  var url = `https://api.edamam.com/search?q=${inputValue}&app_id=45918ea0&app_key=${process.env.REACT_APP_API}&from=${from}&to=${to}&calories=591-722&health=${healthLables}`;
 
   useEffect(() => {
+    if(inputValue){
+      getRecipes()
+    }
     console.log("iside app");
-  }, []);
-
+  }, [from,to]);
+  
   console.log("localstorage", localStorage.getItem("login"));
+
 
   const onPagination = (start, end) => {
     console.log(start, end);
@@ -327,7 +324,7 @@ function App() {
     axios
       .get(url)
       .then((result) => {
-        setrecipes(result.data.hits);
+        setrecipes([...result.data.hits]);
         console.log(result.data);
         console.log(result.data.hits.recipe.calories);
         console.log(result.data.hits[1].recipe.calories);
@@ -353,10 +350,10 @@ function App() {
   //   };
   // };
 
-  const deb = useCallback(
-    debounce((text) => setInputValue(text), 3000),
-    []
-  );
+  // const deb = useCallback(
+  //   debounce((text) => setInputValue(text), 3000),
+  //   []
+  // );
 
   // const handleInput = debounce((text) => {
   //   setInputValue(text);
@@ -370,15 +367,15 @@ function App() {
   // const handlePageClicked = (data) => {
   //   console.log(data.selected);
   // };
+  
+  const scrollToTop = () => {
+    document.getElementById("scroller").scroll({top : 0,behavior:"smooth"})
+  };
 
   const enterValue = (e) => {
     setInputValue(e.target.value);
     setEnable(e.target.value);
   };
-
-  useEffect(() => {
-    getRecipes();
-  }, [inputValue]);
 
   function change(e) {
     setCaloriesFilterValue(e.target.value);
@@ -403,6 +400,7 @@ function App() {
         <form className="app_form" onSubmit={onSubmit}>
           <div className="input_button_search">
             <div className="input_trans">
+            {/* {from} -- {to} */}
               <input
                 id="search"
                 type="text"
@@ -497,7 +495,7 @@ function App() {
             </p>
           )}
         </div>
-        {inputValue ? <div className="recipe_app scroll">
+        {inputValue ? <div id="scroller" className="recipe_app scroll">
           {isLoading ? (
             <SkeletonArticle  />
           ) : !inputValue ? null : (
@@ -521,14 +519,19 @@ function App() {
               })
           )}
         </div> : null}
+        
         {inputValue ? (
           <Pagination
             showPerPage={showPerPage}
             onPagination={onPagination}
             total={recipes.length}
+            setFrom ={setFrom}
+            setTo ={setTo}
+            scrollToTop= {scrollToTop}
           />
         ) : null}
       </div>
+      {console.log("-----",from)}
     </AppWrapperTile>
   );
 }

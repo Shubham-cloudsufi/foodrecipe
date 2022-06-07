@@ -4,7 +4,6 @@ import styled from "styled-components";
 const PaginateWrapperTile = styled("div")`
   .buttons_pagination {
     margin-top: 1rem;
-    /* position: fixed; */
     display: flex;
     justify-content: center;
   }
@@ -16,6 +15,7 @@ const PaginateWrapperTile = styled("div")`
     cursor:pointer;
     background-color: green;
     border-radius: 5px;
+    /* overflow: scroll; */
   }
   .next {
     padding:10px 1rem;
@@ -25,6 +25,7 @@ const PaginateWrapperTile = styled("div")`
     cursor:pointer;
     background-color: green;
     border-radius: 5px;
+    /* overflow: scroll; */
   }
   .hover_button:hover{
     color: green;
@@ -38,40 +39,34 @@ const PaginateWrapperTile = styled("div")`
     }
   }
 `;
-const Pagination = ({ showPerPage, onPagination, total }) => {
-  const [counter, setCounter] = useState(1);
-  console.log(showPerPage);
-  useEffect(() => {
-    const value = showPerPage * counter;
-    console.log("start value", value - showPerPage);
-    console.log("end value", value);
-    console.log("counter change");
-    onPagination(value - showPerPage, value);
-  }, [counter]);
+const Pagination = ({setFrom , setTo ,scrollToTop}) => {
+
+  // const scrollToTop = () => {
+  //   // window.scrollTo(0,-100)
+  //   document.getElementById("scroller").scrollTo(0,0)
+  // };
 
   const onButtonClick = (type) => {
     if (type === "prev") {
-      if (counter === 1) {
-        setCounter(1);
-      } else {
-        setCounter(counter - 1);
+        setFrom(prevState => prevState -10)
+        setTo(prevState => prevState -10)
       }
-    } else if (type === "next") {
-      if (Math.ceil(total / showPerPage) === counter) {
-        setCounter(counter);
-      } else {
-        setCounter(counter + 1);
+    else if(type === "next") 
+    {
+        setFrom(prevState => prevState +10)
+        setTo(prevState => prevState +10)
       }
-    }
   };
 
   return (
     <PaginateWrapperTile>
-      <div className="buttons_pagination">
-        <button className="previous hover_button" onClick={() => onButtonClick("prev")}>
+      <div  className="buttons_pagination" onClick={scrollToTop}>
+        <button className="previous hover_button" onClick={() => {onButtonClick("prev")
+        scrollToTop()}}>
           Previous
         </button>
-        <button className="next hover_button" onClick={() => onButtonClick("next")}>
+        <button  className="next hover_button" onClick={() => {onButtonClick("next") 
+        scrollToTop()}}>
           Next
         </button>
       </div>
