@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import { ReactComponent as LoginPageSvg } from "./Icons/Login.svg";
 import { useNavigate } from "react-router-dom";
+import { method } from "lodash";
 
 const NavWrapperTile = styled("div")`
   .header {
@@ -30,7 +31,7 @@ const NavWrapperTile = styled("div")`
     padding: 10px 10px;
     /* width: 70%; */
     border-radius: 5px;
-    border:1px solid green;
+    border: 1px solid green;
   }
   .login {
     padding: 10px 50px;
@@ -84,36 +85,36 @@ const NavWrapperTile = styled("div")`
     align-items: center;
   }
 
-  .radio_button_p{
+  .radio_button_p {
     /* margin: -12px 0px 0px -4.5rem; */
     color: grey;
   }
 
-  .input_gender{
+  .input_gender {
     width: 70px;
     padding: 0 0 0 0;
     margin: 0;
   }
 
   @media screen and (max-width: 700px) {
-    .login_img{
+    .login_img {
       display: none;
     }
     .radio_button {
       padding: 7px 7px 7px 24px;
-  }
-  .radio_button_p{
-    /* margin: -12px 0px 0px -1.5rem; */
-    color: grey;
-    /* width: 5rem; */
-    padding: 0;
-    margin: 0 0px 0 -14px;
-  }
+    }
+    .radio_button_p {
+      /* margin: -12px 0px 0px -1.5rem; */
+      color: grey;
+      /* width: 5rem; */
+      padding: 0;
+      margin: 0 0px 0 -14px;
+    }
   }
   @media screen and (max-width: 800px) {
     .radio_button {
-   /* display: flow-root; */
-  }
+      /* display: flow-root; */
+    }
   }
 `;
 const Auth = ({ handleLogin }) => {
@@ -123,6 +124,14 @@ const Auth = ({ handleLogin }) => {
   const [Password, setPassword] = useState("");
   const [email, setEmail] = useState("");
 
+  const [userData, setUserData] = useState({
+    name: "",
+    age: "",
+    gender: "",
+    Password: "",
+    email: "",
+  });
+
   console.log("iside auth");
 
   function onChangeValue(event) {
@@ -130,20 +139,42 @@ const Auth = ({ handleLogin }) => {
     console.log(event.target.value);
   }
 
-  function onSubmit(e){
-    // e.preventDefault();
+  function onSubmit() {
     handleLogin({ name, age, gender, Password, email });
-    // console.log("Email value:" + emailRef.current.value )
-    // console.log("Password value:" + passwordRef.current.value )
   }
-
+  const submitData = async (e) => {
+    e.preventdeafault();
+    const { name, age, gender, Password, email } = userData;
+    const res = await fetch(
+      "https://reactfoodsite-default-rtdb.firebaseio.com/userDataRecords.json",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          age,
+          gender,
+          Password,
+          email,
+        }),
+      }
+    );
+    if (res) {
+      alert("data stored");
+    } else {
+      alert("please fill the data");
+    }
+  };
 
   return (
     <NavWrapperTile>
-      <form className="header" onSubmit={onSubmit}>
+      <form method="POST" className="header" onSubmit={onSubmit}>
         <LoginPageSvg className="login_img" />
         <div className="input_data">
           <input
+            name="name"
             type="text"
             placeholder="Name"
             value={name}
@@ -151,58 +182,56 @@ const Auth = ({ handleLogin }) => {
             required
           />
           <input
+            name="age"
             type="number"
             placeholder="Age"
             value={age}
             onChange={(e) => setAge(e.target.value)}
             required
           />
-          {/* <p>GENDER:</p> */}
-          
-            <div className="radio_button" onChange={onChangeValue}>
+         
+          <div className="radio_button" onChange={onChangeValue}>
             <span className="radio_button_p">Gender</span>
-              <input
-                type="radio"
-                value="Male"
-                className="input_gender"
-                name="gender"
-                checked={gender === "Male"}
-                onChange={(e) => setGender(e.target.value)}
-                required
-              />
-              <span>Male</span>
-              <input
-                type="radio"
-                value="Female"
-                className="input_gender"
-                name="gender"
-                checked={gender === "Female"}
-                onChange={(e) => setGender(e.target.value)}
-                required
-              />
-              <span> Female</span>
-            </div>
+            <input
+              type="radio"
+              value="Male"
+              className="input_gender"
+              name="gender"
+              checked={gender === "Male"}
+              onChange={(e) => setGender(e.target.value)}
+              required
+            />
+            <span>Male</span>
+            <input
+              type="radio"
+              value="Female"
+              className="input_gender"
+              name="gender"
+              checked={gender === "Female"}
+              onChange={(e) => setGender(e.target.value)}
+              required
+            />
+            <span> Female</span>
+          </div>
           <input
+            name="email"
             type="email"
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-          required
+            required
           />
-          {/* <p>PROFILE:</p> */}
           <input
+            name="Password"
             type="password"
             placeholder="Password"
             value={Password}
-             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
             onChange={(e) => setPassword(e.target.value)}
             required
           />
           <div>
-            <button
-              className="login"
-              type="submit"
-            >
+            <button className="login" type="submit" onClick={submitData}>
               Login
             </button>
           </div>

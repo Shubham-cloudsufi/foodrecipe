@@ -191,10 +191,6 @@ const AppWrapperTile = styled("div")`
       display: grid;
       grid-template-columns: 240px;
     }
-    .app {
-      box-sizing: border-box;
-      margin-right: 7rem;
-    }
   }
 
   .conatainer {
