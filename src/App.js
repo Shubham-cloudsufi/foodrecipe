@@ -172,8 +172,7 @@ const AppWrapperTile = styled("div")`
     }
     .scroll {
       width: 23rem;
-      height: 35rem;
-      margin-left: 7.5rem;
+      height: 85%;
     }
   }
 
@@ -190,6 +189,9 @@ const AppWrapperTile = styled("div")`
     .recipe_app {
       display: grid;
       grid-template-columns: 240px;
+    }
+    .app {
+      height: 52rem;
     }
   }
 

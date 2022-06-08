@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const PaginateWrapperTile = styled("div")`
   .buttons_pagination {
-    margin-top: 1rem;
+    /* margin-top: 1rem; */
     display: flex;
     justify-content: center;
   }
@@ -35,8 +35,7 @@ const PaginateWrapperTile = styled("div")`
 
   @media screen and (max-width: 500px) {
     .buttons_pagination{
-      margin-left: 7.1rem;
-
+      /* margin-left: 7.1rem; */
     }
   }
 `;
