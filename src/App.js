@@ -11,7 +11,7 @@ const AppWrapperTile = styled("div")`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 2.8rem;
+    /* margin-top: 2.8rem; */
     box-sizing: border-box;
   }
   .header {
@@ -172,7 +172,8 @@ const AppWrapperTile = styled("div")`
       grid-template-columns: 240px;
     }
     .app {
-      height: 52rem;
+      height: 31rem;
+      margin-top: 5rem;
     }
     .recipe_app {
       display: grid;
@@ -187,7 +188,8 @@ const AppWrapperTile = styled("div")`
       height: 85%;
     }
     .noresult_icon{
-      height: 10rem;
+      height: 11rem;
+    margin-top: 15rem;
     }
     .app_refresh_p{
       height: 20rem;
