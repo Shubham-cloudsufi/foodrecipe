@@ -155,13 +155,11 @@ const AppWrapperTile = styled("div")`
     .scroll {
       width: 46rem;
     }
-  }
-
-  @media screen and (max-width: 1000px) {
     .app {
       box-sizing: border-box;
     }
   }
+
 
   @media screen and (max-width: 500px) {
     .input_button_search {
@@ -172,8 +170,7 @@ const AppWrapperTile = styled("div")`
       grid-template-columns: 240px;
     }
     .app {
-      height: 42rem;
-      margin-top: 5rem;
+      height: 58rem;
     }
     .recipe_app {
       display: grid;
@@ -185,7 +182,7 @@ const AppWrapperTile = styled("div")`
     }
     .scroll {
       width: 23rem;
-      /* height: 85%; */
+      height: 40rem;
     }
     .noresult_icon{
       height: 11rem;
