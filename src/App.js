@@ -1,10 +1,9 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import RecipeTile from "./RecipeTile";
 import axios from "axios";
 import { ReactComponent as SearchBackground } from "./Icons/NoResultIcon.svg";
 import SkeletonArticle from "./SkeletonArticle";
-import { debounce } from "lodash";
 import Pagination from "./Pagination";
 const AppWrapperTile = styled("div")`
   .app {
@@ -13,7 +12,6 @@ const AppWrapperTile = styled("div")`
     justify-content: center;
     align-items: center;
     margin-top: 2.8rem;
-    /* margin-bottom: 1.5rem; */
     box-sizing: border-box;
   }
   .header {
@@ -49,7 +47,6 @@ const AppWrapperTile = styled("div")`
   #search {
     outline: none;
     border: 1px solid #54b248;
-    /* width: 60%; */
     height: 2.3rem;
     border-right: none;
     border-radius: 0.5rem 0 0 0.5rem;
@@ -117,19 +114,17 @@ const AppWrapperTile = styled("div")`
 
   .app_refresh_p {
     margin-top: 0rem;
-    /* margin-left: 3rem; */
     width: 100%;
   }
 
   .search_food {
     text-align: center;
-    margin-top: 4rem;
+    margin-top: 9rem;
   }
   .noresult_icon {
     width: 20rem;
     height: 10rem;
     margin: 0rem 0 0 0rem;
-    /* margin-top: 5.8rem; */
     right: 0;
     .noresult_icon_first {
       fill: yellow;
@@ -192,15 +187,14 @@ const AppWrapperTile = styled("div")`
       height: 85%;
     }
     .noresult_icon{
-      /* margin-top: -24rem; */
       height: 10rem;
     }
     .app_refresh_p{
       height: 20rem;
     }
-    /* .search_food{
-      margin-top: -24rem;
-    } */
+    .search_food{
+      margin-top: 0rem;
+    }
   }
 
   .conatainer {
@@ -344,35 +338,6 @@ function App() {
     e.preventDefault();
     getRecipes();
   };
-  // const debounce = function (fn, d) {
-  //   // let timer;
-  //   return function () {
-  //     let context = this,
-  //       args = arguments;
-  //     clearTimeout(timer);
-  //     let timer = setTimeout(() => {
-  //       fn.apply(context, args);
-  //     }, d);
-  //   };
-  // };
-
-  // const deb = useCallback(
-  //   debounce((text) => setInputValue(text), 3000),
-  //   []
-  // );
-
-  // const handleInput = debounce((text) => {
-  //   setInputValue(text);
-  // }, 1000);
-
-  //   const handleText = (text) =>{
-  //     deb();
-  //     console.log("text",text)
-  // }
-
-  // const handlePageClicked = (data) => {
-  //   console.log(data.selected);
-  // };
   
   const scrollToTop = () => {
     document.getElementById("scrollTop").scroll({top : 0,behavior:"smooth"})
@@ -406,7 +371,6 @@ function App() {
         <form className="app_form" onSubmit={onSubmit}>
           <div className="input_button_search">
             <div className="input_trans">
-            {/* {from} -- {to} */}
               <input
                 id="search"
                 type="text"
