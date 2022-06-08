@@ -185,7 +185,7 @@ const AppWrapperTile = styled("div")`
     }
     .scroll {
       width: 23rem;
-      height: 85%;
+      /* height: 85%; */
     }
     .noresult_icon{
       height: 11rem;
