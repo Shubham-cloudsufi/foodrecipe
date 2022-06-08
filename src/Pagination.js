@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const PaginateWrapperTile = styled("div")`
   .buttons_pagination {
-    /* margin-top: 1rem; */
+    margin-top: 1rem;
     display: flex;
     justify-content: center;
   }

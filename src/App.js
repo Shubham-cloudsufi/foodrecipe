@@ -129,7 +129,7 @@ const AppWrapperTile = styled("div")`
     width: 20rem;
     height: 10rem;
     margin: 0rem 0 0 0rem;
-    margin-top: 5.8rem;
+    /* margin-top: 5.8rem; */
     right: 0;
     .noresult_icon_first {
       fill: yellow;
@@ -161,20 +161,6 @@ const AppWrapperTile = styled("div")`
       width: 46rem;
     }
   }
-  @media screen and (max-width: 500px) {
-    .recipe_app {
-      display: grid;
-      grid-template-columns: 15rem;
-    }
-    #search {
-      left: 10%;
-      width: 70%;
-    }
-    .scroll {
-      width: 23rem;
-      height: 85%;
-    }
-  }
 
   @media screen and (max-width: 1000px) {
     .app {
@@ -193,6 +179,28 @@ const AppWrapperTile = styled("div")`
     .app {
       height: 52rem;
     }
+    .recipe_app {
+      display: grid;
+      grid-template-columns: 15rem;
+    }
+    #search {
+      left: 10%;
+      width: 70%;
+    }
+    .scroll {
+      width: 23rem;
+      height: 85%;
+    }
+    .noresult_icon{
+      /* margin-top: -24rem; */
+      height: 10rem;
+    }
+    .app_refresh_p{
+      height: 20rem;
+    }
+    /* .search_food{
+      margin-top: -24rem;
+    } */
   }
 
   .conatainer {
