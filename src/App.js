@@ -172,7 +172,7 @@ const AppWrapperTile = styled("div")`
       grid-template-columns: 240px;
     }
     .app {
-      height: 31rem;
+      height: 42rem;
       margin-top: 5rem;
     }
     .recipe_app {
