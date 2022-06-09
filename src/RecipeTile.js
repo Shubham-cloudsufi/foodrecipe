@@ -1,5 +1,4 @@
 import React from "react";
-import outside from "./Icons/LinkToRecipe.svg";
 import styled from "styled-components";
 
 const RecipeWrapperTile = styled("div")`
@@ -11,7 +10,7 @@ const RecipeWrapperTile = styled("div")`
     margin-top: 60px;
     display: flex;
     flex-direction: row;
-    margin: 3.5rem 0.2rem 0 7.5rem;
+    margin:1.2rem 0.2rem 0 7.5rem;
     justify-content: space-around;
     flex-wrap: wrap;
     text-align: center;
@@ -52,12 +51,6 @@ const RecipeWrapperTile = styled("div")`
     background-color: rgb(251, 251, 251);
   }
 
-  .recipe_inline {
-    /* display: flex;
-    justify-content: space-between;
-    width: 15.5rem; */
-  }
-
   .recipe_dishtype {
     display: flex;
     justify-content: center;
@@ -69,7 +62,6 @@ const RecipeWrapperTile = styled("div")`
     text-overflow: ellipsis;
     border-radius: 0.5rem;
     font-weight: 400;
-    /* text-transform: lowercase; */
     align-items: center;
     background: #3a913f;
     color: #ffffff;
@@ -100,15 +92,6 @@ const RecipeWrapperTile = styled("div")`
     transition: all 1s;
     color: white;
   }
-  /* .arrow {
-    justify-content: end;
-    display: flex;
-    margin: -32px 11px 0px 0px;
-  } */
-  /* .arrow img {
-    width: 1.5rem;
-    height: 1.8rem; 
-  } */
   .app_arrow {
     margin-left: -1.2rem;
   }
@@ -119,11 +102,7 @@ const RecipeWrapperTile = styled("div")`
     padding-right: 12rem;
     color: rgb(139, 154, 70);
   }
-  @media screen and (max-width: 500px) {
-    /* .recipe_url {
-    margin-left: 22rem;
-  } */
-  }
+
 `;
 
 const RecipeTile = ({ recipes }) => {

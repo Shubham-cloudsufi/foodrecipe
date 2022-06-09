@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 
 const PaginateWrapperTile = styled("div")`
   .buttons_pagination {
-    margin-top: 1rem;
+    margin-top: 0.7rem;
     display: flex;
     justify-content: center;
   }
@@ -15,7 +15,6 @@ const PaginateWrapperTile = styled("div")`
     cursor:pointer;
     background-color: green;
     border-radius: 5px;
-    /* overflow: scroll; */
   }
   .next {
     padding:10px 1rem;
@@ -25,26 +24,15 @@ const PaginateWrapperTile = styled("div")`
     cursor:pointer;
     background-color: green;
     border-radius: 5px;
-    /* overflow: scroll; */
   }
   .hover_button:hover{
     color: green;
     background-color: white;
     border: 1px solid lightgreen;
   }
-
-  @media screen and (max-width: 500px) {
-    .buttons_pagination{
-      /* margin-left: 7.1rem; */
-    }
-  }
 `;
 const Pagination = ({setFrom , setTo ,scrollToTop}) => {
 
-  // const scrollToTop = () => {
-  //   // window.scrollTo(0,-100)
-  //   document.getElementById("scroller").scrollTo(0,0)
-  // };
 
   const onButtonClick = (type) => {
     if (type === "prev") {

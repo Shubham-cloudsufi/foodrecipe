@@ -11,7 +11,6 @@ const AppWrapperTile = styled("div")`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* margin-top: 2.8rem; */
     box-sizing: border-box;
   }
   .header {
@@ -30,7 +29,7 @@ const AppWrapperTile = styled("div")`
 
   .scroll {
     width: 70rem;
-    height: 28rem;
+    height: 26rem;
     overflow-x: hidden;
     text-align: justify;
   }
